@@ -85,16 +85,16 @@ const Button1 = React.forwardRef(({ children, ...props }: any, ref: any) => {
 export default Button1;
 
 interface ButtonProps {
-  px: number;
-  py: number;
-  pr_title: number;
-  pl_title: number;
-  mx: number;
-  my: number;
-  type: "solid" | "clear" | "outline";
-  radius: "xs" | "sm" | "md" | "lg" | number;
-  textColor: "white" | "darkSky" | "gray";
-  bgColor: "transparent" | "black" | "white" | "gray" | "darkSky";
-  borderColor: "darkSky" | "gray" | "black" | "darkSky";
+  px?: number;
+  py?: number;
+  pr_title?: number;
+  pl_title?: number;
+  mx?: number;
+  my?: number;
+  type?: "solid" | "clear" | "outline";
+  radius?: "xs" | "sm" | "md" | "lg" | number;
+  textColor?: "white" | "darkSky" | "gray";
+  bgColor?: "transparent" | "black" | "white" | "gray" | "darkSky";
+  borderColor?: "darkSky" | "gray" | "black" | "darkSky";
   onPress: () => void;
 }

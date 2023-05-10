@@ -21,7 +21,7 @@ const Inspirations = () => {
         {inspiration.length === 0
           ? null
           : inspiration.map((inspirationItem, i) => (
-              <TouchableOpacity  className="bg-white rounded-[20px] p-5" onPress={() => alert(inspirationItem.title)}>
+              <TouchableOpacity  className="bg-white rounded-[20px] p-5" key={i} onPress={() => alert(inspirationItem.title)}>
                 <Icon
                   name={
                     i == 0
