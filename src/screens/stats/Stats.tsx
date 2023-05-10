@@ -3,8 +3,9 @@ import React from 'react'
 
 const Stats = () => {
   return (
-    <View>
-      <Text>Stats</Text>
+    <View className='m-6'>
+      <Text>Stats..</Text>
+      <Text>Stats..</Text>
     </View>
   )
 }
