@@ -1,34 +1,35 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import {
-    Dialog,
-    } from '@rneui/themed';
+import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
+import React, { useState } from 'react'
+import Button1 from "../../../components/button/Button";
+import { Icon } from "../../../utils/Utils";
+import Modal_ from "../../../components/modal/Modal";
+import colors from "../../../../colors";
+import LogMoodDetails from './LogMoodDetails';
 
-const LogMood =
-React.forwardRef(({ ...props }: any, ref: any) => {
-  let {
-    isVisible,
-    onBackdropPress,
- }: LogMoodInterface = props
+const LogMood = ()=>{
+  const [moodModalVisible, setMoodModalVisible] = useState(false);
+
+  const toggleLogMood = (): void => {
+     setMoodModalVisible(!moodModalVisible);
+  };
   return (
-    <Dialog
-      isVisible={isVisible}
-      onBackdropPress={onBackdropPress}
-
-    >
-      <Dialog.Title title="Dialog Title"/>
-      <Text>Dialog body text. Add relevant information here.</Text>
-      <Dialog.Actions>
-        <Dialog.Button title="ACTION 1" onPress={() => console.log('Primary Action Clicked!')}/>
-        <Dialog.Button title="ACTION 2" onPress={() => console.log('Secondary Action Clicked!')}/>
-      </Dialog.Actions>
-    </Dialog>
+    <View className="flex justify-end ">
+        <Modal_ moodModalVisible={moodModalVisible} onRequestClose={toggleLogMood}>
+          <LogMoodDetails/>
+        </Modal_>
+        <Button1
+          type="solid"
+          textColor="white"
+          mx={48}
+          my={20}
+          pr_title={6}
+          onPress={toggleLogMood}
+        >
+          Log your mood
+          <Icon name="plus" color={colors.white} />
+        </Button1>
+      </View>
   )
-});
+};
 
 export default LogMood;
-
-interface LogMoodInterface {
-    isVisible: boolean;
-    onBackdropPress?: any;
-  }
