@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export function InspirationIcon(props: {
+export function Icon(props: {
     name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
     color: string;
   }) {

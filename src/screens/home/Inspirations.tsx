@@ -3,7 +3,7 @@ import React from "react";
 import Button1 from "../../components/button/Button";
 import cn from "classnames";
 import colors from "../../../colors";
-import { InspirationIcon } from "../../utils/Utils";
+import { Icon } from "../../utils/Utils";
 import { INSPIRATION } from "../../utils/Constant";
 import { ScrollView, TouchableOpacity  } from "react-native";
 
@@ -22,7 +22,7 @@ const Inspirations = () => {
           ? null
           : inspiration.map((inspirationItem, i) => (
               <TouchableOpacity  className="bg-white rounded-[20px] p-5" onPress={() => alert(inspirationItem.title)}>
-                <InspirationIcon
+                <Icon
                   name={
                     i == 0
                       ? "music"
