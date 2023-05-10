@@ -11,7 +11,7 @@ const Home = () => {
     <View className="pt-16 px-6 h-full">
       <Inspirations />
       <Entries/>
-      <View className="flex-1 justify-end ">
+      <View className="flex justify-end ">
         <Button1 type="solid" textColor="white" mx={48} my={20} pr_title={6}>
           Log your mood
           <InspirationIcon name="plus" color={colors.white} />

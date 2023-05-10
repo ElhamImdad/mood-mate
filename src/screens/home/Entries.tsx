@@ -1,31 +1,19 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { ListItem, Divider } from "@rneui/themed";
+import CardDetails from "../../components/card/CardDetails";
+import { MOOD_ENTRIES } from "../../utils/Constant";
+import { ScrollView } from "react-native";
 
 const Entries = () => {
+  let mood_entries = MOOD_ENTRIES;
   return (
-    <View>
+    <View className="flex-1">
       <Text className="text-black800 text-2xl font-extrabold">May 2023</Text>
-      <View className="my-4">
-        <ListItem pad={12} containerStyle={{borderRadius:20}}>
-          <View className="flex items-center justify-between flex-row">
-            <View className="flex items-center justify-center pr-3 space-y-2">
-              <Text>01</Text>
-              <Text>May</Text>
-            </View>
-            <Divider orientation="vertical" width={1} />
-          </View>
-          <ListItem.Content className="flex flex-row items-center justify-start">
-            <View>
-              <Text>AWESOME</Text>
-              <Text>Self-confidence, Powerful, Self-confidence</Text>
-            </View>
-          </ListItem.Content>
-          <View>
-            <ListItem.Chevron />
-          </View>
-        </ListItem>
-      </View>
+      <ScrollView className="mt-4" showsVerticalScrollIndicator={false}>
+        {mood_entries.map((item, i) => (
+          <CardDetails data={item} key={i}/>
+        ))}
+      </ScrollView>
     </View>
   );
 };
