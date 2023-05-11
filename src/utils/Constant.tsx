@@ -141,18 +141,22 @@ export const FEELING = [
       {
         id: 1,
         name: 'Exited',
+        selected: false,
       },
       {
         id: 2,
         name: 'Self-confidence',
+        selected: false,
       },
       {
         id: 3,
         name: 'Powerful',
+        selected: false,
       },
       {
         id: 4,
         name: 'Joyful',
+        selected: false,
       },
     ]
   },
@@ -164,22 +168,27 @@ export const FEELING = [
       {
         id: 1,
         name: 'Glad',
+        selected: false,
       },
       {
         id: 2,
         name: 'Grateful',
+        selected: false,
       },
       {
         id: 3,
         name: 'Delighted',
+        selected: false,
       },
       {
         id: 4,
         name: 'Pleased',
+        selected: false,
       },
       {
         id: 5,
         name: 'Optimistic',
+        selected: false,
       }
     ]
   },
@@ -191,14 +200,17 @@ export const FEELING = [
       {
         id: 1,
         name: 'Glad',
+        selected: false,
       },
       {
         id: 2,
         name: 'Grateful',
+        selected: false,
       },
       {
         id: 3,
         name: 'Delighted',
+        selected: false,
       },
     ]
   },
@@ -210,22 +222,27 @@ export const FEELING = [
       {
         id: 1,
         name: 'Upset',
+        selected: false,
       },
       {
         id: 2,
         name: 'Heavy',
+        selected: false,
       },
       {
         id: 3,
         name: 'Sorrowful',
+        selected: false,
       },
       {
         id: 4,
         name: 'Crushed',
+        selected: false,
       },
       {
         id: 5,
         name: 'Disgusted',
+        selected: false,
       }
     ]
   },
@@ -237,22 +254,27 @@ export const FEELING = [
       {
         id: 1,
         name: 'Upset',
+        selected: false,
       },
       {
         id: 2,
         name: 'Heavy',
+        selected: false,
       },
       {
         id: 3,
         name: 'Sorrowful',
+        selected: false,
       },
       {
         id: 4,
         name: 'Crushed',
+        selected: false,
       },
       {
         id: 5,
         name: 'Disgusted',
+        selected: false,
       }
     ]
   },

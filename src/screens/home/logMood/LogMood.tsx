@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Button from "../../../components/button/Button";
 import { Icon } from "../../../utils/Utils";
 import Modal from "../../../components/modal/Modal";
-import colors from "../../../../colors";
+import colors from "../../../utils/colors";
 import LogMoodDetails from "./LogMoodDetails";
 
 const LogMood = () => {
