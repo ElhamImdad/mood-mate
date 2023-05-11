@@ -6,14 +6,14 @@ import MoodSlider from "./moodSlider/MoodSlider";
 const LogMoodDetails = () => {
   return (
     // <ScrollView>
-    <View className="py-10 px-5 bg-white50">
+    <View className="py-14 px-5 bg-white50 h-screen">
       {/* <View className="items-center"> */}
         <Text className="text-xl font-extrabold text-black800 text-center">
           How are you?
         </Text>
         <MoodSlider/>
       {/* </View> */}
-      <View className="flex justify-end">
+      <View className="flex-1 justify-end bottom-16">
         <Button
           type="solid"
           textColor="white"

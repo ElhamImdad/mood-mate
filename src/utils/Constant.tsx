@@ -186,7 +186,7 @@ export const FEELING = [
   {
     id: 3,
     img: require('../../assets/not_bad.png'),
-    feelingName: 'not_bad',
+    feelingName: 'not bad',
     SpecifyFeeling: [
       {
         id: 1,

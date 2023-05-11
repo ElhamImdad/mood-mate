@@ -7,8 +7,8 @@ const MoodSlideItem = React.forwardRef(
     let { item }: MoodSlideItemInterface = props;
     return (
       <View className="relative items-center px-4">
-        <Image source={item.img} resizeMode="contain" className="h-2/3"/>
-        <Text>{item.feelingName.toUpperCase()}</Text>
+        <Image source={item.img} resizeMode="contain"/>
+        {/* <Text>{item.feelingName.toUpperCase()}</Text> */}
       </View>
     );
   }

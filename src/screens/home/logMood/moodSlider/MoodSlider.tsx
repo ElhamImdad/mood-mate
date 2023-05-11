@@ -11,7 +11,7 @@ const MoodSlider = () => {
   //To specify the visible element
   const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
     // console.log('viewableItems', viewableItems);
-    setIndexIconVisible(viewableItems[0].index);
+    setIndexIconVisible(Math.round(viewableItems[0].index));
   }).current;
 
   //The percentage of the data shown on the screen at slide
@@ -29,6 +29,7 @@ const MoodSlider = () => {
 
   return (
     <View className="">
+      <View className="px-14 pt-16 m-0">
       <FlatList
         data={feeling}
         renderItem={({ item }) => <MoodSlideItem item={item} />}
@@ -40,7 +41,9 @@ const MoodSlider = () => {
         viewabilityConfig={viewabilityConfig}
       />
       <Pagination data={feeling} index={indexIconVisible} />
-      <View>
+      <Text className="text-lg font-bold text-black800 text-center">{feeling[indexIconVisible].feelingName.toUpperCase()}</Text>
+      </View>
+      <View className="py-10">
         <Text className="text-lg font-bold text-black800">
           Specify your feeling
         </Text>
@@ -48,7 +51,7 @@ const MoodSlider = () => {
           data={feeling[indexIconVisible].SpecifyFeeling}
           renderItem={({ item }) => deepFeeling(item.name, item.id)}
           horizontal
-          // pagingEnabled
+          pagingEnabled
           // snapToAlignment="center"
           showsHorizontalScrollIndicator={false}
           // onViewableItemsChanged={handleOnViewableItemsChanged}
