@@ -8,7 +8,7 @@ const MoodSlideItem = React.forwardRef(
     return (
       <View className="relative items-center px-4">
         <Image source={item.img} resizeMode="contain" className="h-2/3"/>
-        <Text>{item.name.toUpperCase()}</Text>
+        <Text>{item.feelingName.toUpperCase()}</Text>
       </View>
     );
   }
@@ -23,5 +23,9 @@ export interface MoodSlideItemInterface {
 export interface FeelingModel {
     id?: number;
     img: any;
-    name: string;
+    feelingName?: string;
+    SpecifyFeeling: {
+      id: number,
+      name: string,
+    }[];
   }

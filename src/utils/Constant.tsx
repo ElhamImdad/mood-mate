@@ -26,8 +26,17 @@ export const MOOD_ENTRIES = [
     id: 1,
     day: "01",
     month:"May",
-    feelying: "AWESOME",
-    SpecifyFeeling: "Self-confidence, Powerful, Self-confidence",
+    feelingName: "AWESOME",
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Glad',
+      },
+      {
+        id: 2,
+        name: 'Grateful',
+      },
+    ],
     note: "Powerful",
     feelingIcon: "",
   },
@@ -35,8 +44,17 @@ export const MOOD_ENTRIES = [
     id: 2,
     day: "02",
     month:"May",
-    feelying: "AWESOME",
-    SpecifyFeeling: "Powerful, Self-confidence",
+    feelingName: "AWESOME",
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Glad',
+      },
+      {
+        id: 2,
+        name: 'Grateful',
+      },
+    ],
     note: "",
     feelingIcon: "",
   },
@@ -44,8 +62,17 @@ export const MOOD_ENTRIES = [
     id: 3,
     day: "03",
     month:"May",
-    feelying: "AWESOME",
-    SpecifyFeeling: "Self-confidence",
+    feelingName: "AWESOME",
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Glad',
+      },
+      {
+        id: 2,
+        name: 'Grateful',
+      },
+    ],
     note: "",
     feelingIcon: "",
   },
@@ -53,8 +80,17 @@ export const MOOD_ENTRIES = [
     id: 4,
     day: "04",
     month:"May",
-    feelying: "AWESOME",
-    SpecifyFeeling: "Self-confidence, Powerful, Self-confidence ",
+    feelingName: "AWESOME",
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Glad',
+      },
+      {
+        id: 2,
+        name: 'Grateful',
+      },
+    ],
     note: "Powerful",
     feelingIcon: "",
   },
@@ -62,8 +98,17 @@ export const MOOD_ENTRIES = [
     id: 5,
     day: "05",
     month:"May",
-    feelying: "AWESOME",
-    SpecifyFeeling: "Powerful",
+    feelingName: "AWESOME",
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Glad',
+      },
+      {
+        id: 2,
+        name: 'Grateful',
+      },
+    ],
     note: "Powerful",
     feelingIcon: "",
   },
@@ -71,8 +116,17 @@ export const MOOD_ENTRIES = [
     id: 6,
     day: "06",
     month:"May",
-    feelying: "AWESOME",
-    SpecifyFeeling: "Powerful",
+    feelingName: "AWESOME",
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Glad',
+      },
+      {
+        id: 2,
+        name: 'Grateful',
+      },
+    ],
     note: "Powerful",
     feelingIcon: "",
   },
@@ -82,26 +136,124 @@ export const FEELING = [
   {
     id: 1,
     img: require('../../assets/awesome.png'),
-    name: 'awesome',
+    feelingName: 'awesome',
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Exited',
+      },
+      {
+        id: 2,
+        name: 'Self-confidence',
+      },
+      {
+        id: 3,
+        name: 'Powerful',
+      },
+      {
+        id: 4,
+        name: 'Joyful',
+      },
+    ]
   },
   {
     id: 2,
     img: require('../../assets/good.png'),
-    name: 'good',
+    feelingName: 'good',
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Glad',
+      },
+      {
+        id: 2,
+        name: 'Grateful',
+      },
+      {
+        id: 3,
+        name: 'Delighted',
+      },
+      {
+        id: 4,
+        name: 'Pleased',
+      },
+      {
+        id: 5,
+        name: 'Optimistic',
+      }
+    ]
   },
   {
     id: 3,
     img: require('../../assets/not_bad.png'),
-    name: 'not_bad',
+    feelingName: 'not_bad',
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Glad',
+      },
+      {
+        id: 2,
+        name: 'Grateful',
+      },
+      {
+        id: 3,
+        name: 'Delighted',
+      },
+    ]
   },
   {
     id: 4,
     img: require('../../assets/bad.png'),
-    name: 'bad',
+    feelingName: 'bad',
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Upset',
+      },
+      {
+        id: 2,
+        name: 'Heavy',
+      },
+      {
+        id: 3,
+        name: 'Sorrowful',
+      },
+      {
+        id: 4,
+        name: 'Crushed',
+      },
+      {
+        id: 5,
+        name: 'Disgusted',
+      }
+    ]
   },
   {
     id: 5,
     img: require('../../assets/awful.png'),
-    name: 'awful',
+    feelingName: 'awful',
+    SpecifyFeeling: [
+      {
+        id: 1,
+        name: 'Upset',
+      },
+      {
+        id: 2,
+        name: 'Heavy',
+      },
+      {
+        id: 3,
+        name: 'Sorrowful',
+      },
+      {
+        id: 4,
+        name: 'Crushed',
+      },
+      {
+        id: 5,
+        name: 'Disgusted',
+      }
+    ]
   },
 ];

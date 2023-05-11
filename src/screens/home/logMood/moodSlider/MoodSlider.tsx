@@ -19,6 +19,14 @@ const MoodSlider = () => {
     itemVisiblePercentThreshold: 50,
   }).current;
 
+  const deepFeeling = (name, id) =>{
+    return(
+      <View className="bg-white rounded-md py-1.5 px-2 mr-2 my-3">
+        <Text className="text-sm text-black800 font-medium">{name}</Text>
+      </View>
+    )
+  };
+
   return (
     <View className="">
       <FlatList
@@ -33,9 +41,19 @@ const MoodSlider = () => {
       />
       <Pagination data={feeling} index={indexIconVisible} />
       <View>
-        <Text className="text-lg font-bold text-black800">Specify your feeling</Text>
-        <Text className="text-lg font-bold text-black800">Specify your feeling</Text>
-        <Text className="text-lg font-bold text-black800">Specify your feeling</Text>
+        <Text className="text-lg font-bold text-black800">
+          Specify your feeling
+        </Text>
+        <FlatList
+          data={feeling[indexIconVisible].SpecifyFeeling}
+          renderItem={({ item }) => deepFeeling(item.name, item.id)}
+          horizontal
+          // pagingEnabled
+          // snapToAlignment="center"
+          showsHorizontalScrollIndicator={false}
+          // onViewableItemsChanged={handleOnViewableItemsChanged}
+          // viewabilityConfig={viewabilityConfig}
+        />
       </View>
     </View>
   );

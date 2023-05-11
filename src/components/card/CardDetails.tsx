@@ -18,8 +18,8 @@ export const CardDetails = ({ data, size }:
           </View>
           <ListItem.Content className="flex flex-row items-center justify-start">
             <View>
-              <Text>{data.feelying.toUpperCase()}</Text>
-              <Text>{data.SpecifyFeeling}</Text>
+              <Text>{data.feelingName.toUpperCase()}</Text>
+              {/* <Text>{data.SpecifyFeeling}</Text> */}
             </View>
           </ListItem.Content>
           <View>
@@ -36,8 +36,11 @@ export interface CardDetailsInterface {
     id?: number;
     day: string,
     month: string,
-    feelying: string,
-    SpecifyFeeling: string,
+    feelingName?: string,
+    SpecifyFeeling: {
+      id: number,
+      name: string,
+    }[],
     note?: string,
   }
 
