@@ -3,10 +3,13 @@ import React, { useRef, useState } from "react";
 import { FEELING } from "../../../../utils/Constant";
 import MoodSlideItem from "./MoodSlideItem";
 import Pagination from "../../../../components/pagination/Pagination";
+import DeepFeelingItem, { DeepFeelingItemInterface } from "./DeepFeelingItem";
+
 
 const MoodSlider = () => {
   const feeling = FEELING;
   const [indexIconVisible, setIndexIconVisible] = useState(0);
+  const [selectedDeepFeelingId, setSelectedDeepFeelingId] = useState<number>();
 
   //To specify the visible element
   const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
@@ -25,6 +28,19 @@ const MoodSlider = () => {
         <Text className="text-sm text-black800 font-medium">{name}</Text>
       </View>
     )
+  };
+
+  const renderDeepFeelingItem = ({item}: {item: DeepFeelingItemInterface}) => {
+    console.log("item selected", item.id);
+    
+    return (
+      <DeepFeelingItem
+        item={item}
+        onPress={() => setSelectedDeepFeelingId(item.id)}
+        bgColor={item.id === selectedDeepFeelingId? "darkSky": "white"}
+        textColor={item.id === selectedDeepFeelingId? "white": "black800"}
+      />
+    );
   };
 
   return (
@@ -49,10 +65,10 @@ const MoodSlider = () => {
         </Text>
         <FlatList
           data={feeling[indexIconVisible].SpecifyFeeling}
-          renderItem={({ item }) => deepFeeling(item.name, item.id)}
+          renderItem={renderDeepFeelingItem}
           horizontal
-          pagingEnabled
-          // snapToAlignment="center"
+          extraData={selectedDeepFeelingId}
+          keyExtractor={item => item.id.toString()}
           showsHorizontalScrollIndicator={false}
           // onViewableItemsChanged={handleOnViewableItemsChanged}
           // viewabilityConfig={viewabilityConfig}
@@ -63,3 +79,4 @@ const MoodSlider = () => {
 };
 
 export default MoodSlider;
+
