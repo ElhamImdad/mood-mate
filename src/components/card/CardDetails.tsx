@@ -18,7 +18,7 @@ export const CardDetails = ({ data, size }:
           </View>
           <ListItem.Content className="flex flex-row items-center justify-start">
             <View>
-              <Text>{data.feelying}</Text>
+              <Text>{data.feelying.toUpperCase()}</Text>
               <Text>{data.SpecifyFeeling}</Text>
             </View>
           </ListItem.Content>

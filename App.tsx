@@ -1,8 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import AppNavigation from "./src/navigation/AppNavigation";
-import { Text, View } from "react-native";
-
 
 export default function App() {
   return (

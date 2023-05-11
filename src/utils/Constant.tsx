@@ -77,3 +77,31 @@ export const MOOD_ENTRIES = [
     feelingIcon: "",
   },
 ];
+
+export const FEELING = [
+  {
+    id: 1,
+    img: require('../../assets/awesome.png'),
+    name: 'awesome',
+  },
+  {
+    id: 2,
+    img: require('../../assets/good.png'),
+    name: 'good',
+  },
+  {
+    id: 3,
+    img: require('../../assets/not_bad.png'),
+    name: 'not_bad',
+  },
+  {
+    id: 4,
+    img: require('../../assets/bad.png'),
+    name: 'bad',
+  },
+  {
+    id: 5,
+    img: require('../../assets/awful.png'),
+    name: 'awful',
+  },
+];
