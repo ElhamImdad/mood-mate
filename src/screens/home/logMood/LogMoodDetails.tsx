@@ -1,18 +1,19 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import Button from "../../../components/button/Button";
 import MoodSlider from "./moodSlider/MoodSlider";
 
 const LogMoodDetails = () => {
   return (
-    <View className="my-10 bg-white">
-      <View className="items-center justify-center">
-        <Text className="text-xl font-extrabold text-black800">
+    // <ScrollView>
+    <View className="py-10 px-5 bg-white">
+      {/* <View className="items-center"> */}
+        <Text className="text-xl font-extrabold text-black800 text-center">
           How are you?
         </Text>
         <MoodSlider/>
-      </View>
-      <View className="flex-1 justify-end">
+      {/* </View> */}
+      <View className="flex justify-end">
         <Button
           type="solid"
           textColor="white"
@@ -25,6 +26,7 @@ const LogMoodDetails = () => {
         </Button>
       </View>
     </View>
+    //  </ScrollView>
   );
 };
 

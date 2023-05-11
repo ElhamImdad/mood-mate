@@ -1,33 +1,15 @@
 import { View, Text, FlatList, Animated } from "react-native";
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import { FEELING } from "../../../../utils/Constant";
 import MoodSlideItem from "./MoodSlideItem";
-import Pagination from "../../../../components/pagination/Pagination"
+import Pagination from "../../../../components/pagination/Pagination";
 
 const MoodSlider = () => {
   const feeling = FEELING;
-  // const scrollX = useRef(new Animated.Value(0)).current;
   const [indexIconVisible, setIndexIconVisible] = useState(0);
-  //map the Animated value with scrollX
-  // const handleOnScroll = event => {
-  //   Animated.event(
-  //     [
-  //       {
-  //         nativeEvent: {
-  //           contentOffset: {
-  //             x: scrollX,
-  //           },
-  //         },
-  //       },
-  //     ],
-  //     {
-  //       useNativeDriver: false,
-  //     },
-  //   )(event);
-  // };
 
   //To specify the visible element
-  const handleOnViewableItemsChanged = useRef(({viewableItems}) => {
+  const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
     // console.log('viewableItems', viewableItems);
     setIndexIconVisible(viewableItems[0].index);
   }).current;
@@ -46,11 +28,15 @@ const MoodSlider = () => {
         pagingEnabled
         snapToAlignment="center"
         showsHorizontalScrollIndicator={false}
-        // onScroll={handleOnScroll}
         onViewableItemsChanged={handleOnViewableItemsChanged}
         viewabilityConfig={viewabilityConfig}
       />
-      <Pagination data={feeling} index={indexIconVisible}/>
+      <Pagination data={feeling} index={indexIconVisible} />
+      <View>
+        <Text className="text-lg font-bold text-black800">Specify your feeling</Text>
+        <Text className="text-lg font-bold text-black800">Specify your feeling</Text>
+        <Text className="text-lg font-bold text-black800">Specify your feeling</Text>
+      </View>
     </View>
   );
 };
