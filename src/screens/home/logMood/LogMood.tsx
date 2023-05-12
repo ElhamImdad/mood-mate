@@ -15,7 +15,7 @@ const LogMood = () => {
   return (
     <View className="flex justify-end">
       <Modal
-        moodModalVisible={moodModalVisible}
+        visible={moodModalVisible}
         onRequestClose={toggleLogMood}
         pageStyle="pageSheet"
         animationType="slide"

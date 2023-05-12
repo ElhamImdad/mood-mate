@@ -2,7 +2,7 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import React from "react";
 
 const Modal_ = React.forwardRef(({ children, ...props }: any, ref: any) => {
-  let { moodModalVisible, onRequestClose, pageStyle, animationType }: ModalInterface = props;
+  let { visible, onRequestClose, pageStyle, animationType }: ModalInterface = props;
 
   return (
     <View>
@@ -10,7 +10,7 @@ const Modal_ = React.forwardRef(({ children, ...props }: any, ref: any) => {
         presentationStyle={pageStyle}
         animationType={animationType}
         transparent={false}
-        visible={moodModalVisible}
+        visible={visible}
         onRequestClose={onRequestClose}
       >
         {children}
@@ -22,8 +22,8 @@ const Modal_ = React.forwardRef(({ children, ...props }: any, ref: any) => {
 export default Modal_;
 
 interface ModalInterface {
-  moodModalVisible: boolean;
-  onRequestClose?: any;
-  pageStyle: "fullScreen" | "pageSheet" | "formSheet" | "overFullScreen";
+  visible: boolean;
+  onRequestClose?: ()=> void;
+  pageStyle?: "fullScreen" | "pageSheet" | "formSheet" | "overFullScreen";
   animationType: "none" | "slide" | "fade";
 }

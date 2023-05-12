@@ -19,33 +19,33 @@ const LogMoodDetails = () => {
       </Text>
       <MoodSlider />
       <View className="flex-1 justify-end bottom-16">
-        <Modal
-          moodModalVisible={noteModalVisible}
+        {/* <Modal
+          modalVisible={noteModalVisible}
           onRequestClose={toggleNoteModal}
-          pageStyle="pageSheet"
+         
           animationType="slide"
         >
-          <Note />
-        </Modal>
+          
+        </Modal> */}
 
         <Button
           type="solid"
           textColor="white"
           mx={48}
           my={20}
-          pr_title={6}
-          onPress={toggleNoteModal}
+          onPress={() => setNoteModalVisible(true)}
         >
           Next
         </Button>
 
-        {/* <BottomSheet modalProps={{}} isVisible={isVisible}>
-          <View className=" bg-white">
+        <BottomSheet modalProps={{}} isVisible={noteModalVisible} onBackdropPress={toggleNoteModal}>
+          <Note toggleClose={toggleNoteModal}/>
+          {/* <View className=" bg-white h-full rounded-3xl">
             <Pressable onPress={() => setIsVisible(false)}>
-              <Text className="p-10">bottom sheet</Text>
+              <Note />
             </Pressable>
-          </View>
-        </BottomSheet> */}
+          </View> */}
+        </BottomSheet>
       </View>
     </View>
   );
