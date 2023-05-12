@@ -1,4 +1,13 @@
-import { View, Text, FlatList, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Pressable,
+  TextInput,
+  KeyboardAvoidingView,
+  ScrollView,
+  Platform,
+} from "react-native";
 import React, { useRef, useState, useEffect } from "react";
 import { FEELING } from "../../../../utils/Constant";
 import MoodSlideItem from "./MoodSlideItem";
@@ -42,60 +51,62 @@ const MoodSlider = () => {
     console.log(deepFeelingData);
   };
 
-  //if the slider change, then reset the selected deep feeling...  
+  //if the slider change, then reset the selected deep feeling...
   useEffect(() => {
-    feeling[indexIconVisible].SpecifyFeeling.map((data)=>(data.selected=false))
-    setDeepFeelingData(feeling[indexIconVisible].SpecifyFeeling)    
+    feeling[indexIconVisible].SpecifyFeeling.map(
+      (data) => (data.selected = false)
+    );
+    setDeepFeelingData(feeling[indexIconVisible].SpecifyFeeling);
   }, [indexIconVisible]);
 
   return (
-    <View className="">
-      <View className="px-14 pt-16 m-0">
-        <FlatList
-          data={feeling}
-          renderItem={({ item }) => <MoodSlideItem item={item} />}
-          horizontal
-          pagingEnabled
-          snapToAlignment="center"
-          showsHorizontalScrollIndicator={false}
-          onViewableItemsChanged={handleOnViewableItemsChanged}
-          viewabilityConfig={viewabilityConfig}
-        />
-        <Pagination data={feeling} index={indexIconVisible} />
-        <Text className="text-lg font-bold text-black800 text-center">
-          {feeling[indexIconVisible].feelingName.toUpperCase()}
-        </Text>
-      </View>
-      <View className="py-10">
-        <Text className="text-lg font-bold text-black800">
-          Specify your feeling
-        </Text>
-        <FlatList
-          data={deepFeelingData}
-          keyExtractor={(item) => item.id.toString()}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => (
-            <Pressable
-              className={cn("rounded-md py-2 px-2.5 mr-2 my-3 ", {
-                " bg-white ": item.selected != true,
-                "bg-darkSky": item.selected == true,
-              })}
-              onPress={() => onPressFeelingHandler(item, indexIconVisible)}
-            >
-              <Text
-                className={cn("text-sm text-black800 font-medium ", {
-                  " text-white ": item.selected == true,
-                  "text-black800": item.selected != true,
-                })}
-              >
-                {item.name}
-              </Text>
-            </Pressable>
-          )}
-          horizontal
-        />
-      </View>
-    </View>
+        <View className="">
+          <View className="px-14 pt-16 m-0">
+            <FlatList
+              data={feeling}
+              renderItem={({ item }) => <MoodSlideItem item={item} />}
+              horizontal
+              pagingEnabled
+              snapToAlignment="center"
+              showsHorizontalScrollIndicator={false}
+              onViewableItemsChanged={handleOnViewableItemsChanged}
+              viewabilityConfig={viewabilityConfig}
+            />
+            <Pagination data={feeling} index={indexIconVisible} />
+            <Text className="text-lg font-bold text-black800 text-center">
+              {feeling[indexIconVisible].feelingName.toUpperCase()}
+            </Text>
+          </View>
+          <View className="py-10">
+            <Text className="text-lg font-bold text-black800">
+              Specify your feeling
+            </Text>
+            <FlatList
+              data={deepFeelingData}
+              keyExtractor={(item) => item.id.toString()}
+              showsHorizontalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <Pressable
+                  className={cn("rounded-md py-2 px-2.5 mr-2 my-3 ", {
+                    " bg-white ": item.selected != true,
+                    "bg-darkSky": item.selected == true,
+                  })}
+                  onPress={() => onPressFeelingHandler(item, indexIconVisible)}
+                >
+                  <Text
+                    className={cn("text-sm text-black800 font-medium ", {
+                      " text-white ": item.selected == true,
+                      "text-black800": item.selected != true,
+                    })}
+                  >
+                    {item.name}
+                  </Text>
+                </Pressable>
+              )}
+              horizontal
+            />
+          </View>
+        </View>
   );
 };
 

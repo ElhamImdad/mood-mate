@@ -19,6 +19,7 @@ const LogMood = () => {
         onRequestClose={toggleLogMood}
         pageStyle="pageSheet"
         animationType="slide"
+        transparent={false}
       >
         <LogMoodDetails />
       </Modal>

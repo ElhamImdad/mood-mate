@@ -1,4 +1,10 @@
-import { View, Text, ScrollView, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Platform,
+  KeyboardAvoidingView,
+  Dimensions,
+} from "react-native";
 import React, { useState } from "react";
 import { BottomSheet, ListItem } from "@rneui/themed";
 import Button from "../../../components/button/Button";
@@ -6,6 +12,7 @@ import MoodSlider from "./moodSlider/MoodSlider";
 import Modal from "../../../components/modal/Modal";
 import Note from "./moodSlider/Note";
 
+const { height } = Dimensions.get("window");
 const LogMoodDetails = () => {
   const [noteModalVisible, setNoteModalVisible] = useState(false);
   // const [isVisible, setIsVisible] = useState(false);
@@ -19,15 +26,6 @@ const LogMoodDetails = () => {
       </Text>
       <MoodSlider />
       <View className="flex-1 justify-end bottom-16">
-        {/* <Modal
-          modalVisible={noteModalVisible}
-          onRequestClose={toggleNoteModal}
-         
-          animationType="slide"
-        >
-          
-        </Modal> */}
-
         <Button
           type="solid"
           textColor="white"
@@ -38,14 +36,24 @@ const LogMoodDetails = () => {
           Next
         </Button>
 
-        <BottomSheet modalProps={{}} isVisible={noteModalVisible} onBackdropPress={toggleNoteModal}>
-          <Note toggleClose={toggleNoteModal}/>
-          {/* <View className=" bg-white h-full rounded-3xl">
-            <Pressable onPress={() => setIsVisible(false)}>
-              <Note />
-            </Pressable>
-          </View> */}
-        </BottomSheet>
+        {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
+        <Modal
+          visible={noteModalVisible}
+          onRequestClose={toggleNoteModal}
+          transparent={true}
+          animationType="slide"
+        >
+          <View className="flex-1 flex-col justify-end">
+            <KeyboardAvoidingView
+              enabled={true}
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+              keyboardVerticalOffset={0}
+            >
+              <Note toggleClose={toggleNoteModal} />
+            </KeyboardAvoidingView>
+          </View>
+        </Modal>
+        {/* </TouchableWithoutFeedback> */}
       </View>
     </View>
   );
