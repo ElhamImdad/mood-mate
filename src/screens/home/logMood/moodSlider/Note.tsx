@@ -19,6 +19,8 @@ const Note = React.forwardRef(({ children, ...props }: any, ref: any) => {
           Add Note
         </Text>
         <Input size="h-24" space="my-5" 
+        textColor="black"
+       
         multiline={true}
         maxLength={300}
         />

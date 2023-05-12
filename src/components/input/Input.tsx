@@ -13,6 +13,7 @@ const Input = React.forwardRef(({ children, ...props }: any, ref: any) => {
     keyboardType,
     bgColor,
     textColor,
+    borderColor,
     radius,
     size,
     space,
@@ -45,7 +46,15 @@ const Input = React.forwardRef(({ children, ...props }: any, ref: any) => {
         }
         multiline={!multiline?false:multiline}
         onSubmitEditing={onChangeText}
-        className={cn("p-5 border boreder-gray400 text-base", size, space, {
+        className={cn("p-5 border boreder-gray400 text-base hover:border-darkSxky", size, space, {
+          //borderColoe
+          "border-gray400": !borderColor || borderColor === "gray",
+          "border-darkSky": borderColor === "darkSky",
+          "border-black800": borderColor === "black",
+          "border-white": borderColor === "white",
+          "border-transparent": borderColor === "transparent",
+
+
           // colors
           "text-black800": !textColor && !bgColor,
           "text-darkSky": textColor === "darkSky",
@@ -80,6 +89,7 @@ interface InputProps {
   value: string;
   bgColor?: "transparent" | "black" | "white" | "gray" | "darkSky";
   textColor?: "white" | "darkSky" | "gray";
+  borderColor?: "transparent" | "black" | "white" | "gray" | "darkSky";
   radius?: "rounded" | "md" | "lg" | "2xl";
   size?: string;
   space?: string;
