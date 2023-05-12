@@ -17,6 +17,8 @@ const LogMood = () => {
       <Modal
         moodModalVisible={moodModalVisible}
         onRequestClose={toggleLogMood}
+        pageStyle="pageSheet"
+        animationType="slide"
       >
         <LogMoodDetails />
       </Modal>
