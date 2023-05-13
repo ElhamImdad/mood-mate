@@ -3,9 +3,7 @@ import {
   Text,
   FlatList,
   Pressable,
-  TextInput,
   KeyboardAvoidingView,
-  ScrollView,
   Platform,
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
@@ -13,9 +11,16 @@ import { FEELING } from "../../../../utils/Constant";
 import MoodSlideItem from "./MoodSlideItem";
 import Pagination from "../../../../components/pagination/Pagination";
 import cn from "classnames";
+import { RootState } from "../../../../redux/reducers/rootReducer";
+import { useSelector, useDispatch } from 'react-redux';
+import { setFeeling } from "../../../../redux/actions/feeling.actions"
+import { FeelingModel } from "../../../../models/FeelingModel"
 
 const MoodSlider = () => {
   let feeling = FEELING;
+  const dispatch = useDispatch();
+  const { feelings } = useSelector((state: RootState) => state.feeling)
+
 
   const [indexIconVisible, setIndexIconVisible] = useState(0);
   const [deepFeelingData, setDeepFeelingData] = useState<
@@ -24,8 +29,11 @@ const MoodSlider = () => {
 
   //To specify the visible element...
   const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
-    // console.log('viewableItems', viewableItems);
+    console.log('viewableItems', viewableItems);
+    const item: FeelingModel = viewableItems[0];
+    dispatch(setFeeling({item.id, item.feelingName, item.SpecifyFeeling}));
     setIndexIconVisible(Math.round(viewableItems[0].index));
+
   }).current;
 
   //The percentage of the data shown on the screen at slide...
@@ -53,6 +61,7 @@ const MoodSlider = () => {
 
   //if the slider change, then reset the selected deep feeling...
   useEffect(() => {
+    // dispatch(setFeeling(feeling[indexIconVisible].SpecifyFeeling))
     feeling[indexIconVisible].SpecifyFeeling.map(
       (data) => (data.selected = false)
     );
