@@ -1,4 +1,16 @@
-export const SET_FEELING = 'SET_MOOD';
+export interface SpecificFeelingModel {
+  id: number;
+  name: string;
+  selected?: boolean;
+}
+export interface FeelingModel {
+  id: number;
+  // img: any;
+  feelingName: string;
+  specificFeeling: SpecificFeelingModel[];
+}
+
+export const SET_FEELING = 'SET_FEELING';
 export const SET_SPECIFIC_FEELING = 'SET_SPECIFIC_FEELING';
 
 interface SetFeelingAction {
@@ -12,18 +24,4 @@ interface SetSpecificFeelingAction {
  
 }
 
-
-export interface FeelingModel {
-    id?: number;
-    // img: any;
-    feelingName?: string;
-    SpecifyFeeling: SpecificFeelingModel[];
-  }
-
-export interface SpecificFeelingModel {
-    id: number;
-    name: string;
-    selected?: boolean;
-  }
-
-export type FeelingActionModels = SetFeelingAction 
+export type FeelingActionModels = SetFeelingAction | SetSpecificFeelingAction

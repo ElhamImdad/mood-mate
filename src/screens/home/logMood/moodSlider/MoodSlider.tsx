@@ -11,27 +11,36 @@ import { FEELING } from "../../../../utils/Constant";
 import MoodSlideItem from "./MoodSlideItem";
 import Pagination from "../../../../components/pagination/Pagination";
 import cn from "classnames";
-import { RootState } from "../../../../redux/reducers/rootReducer";
-import { useSelector, useDispatch } from 'react-redux';
-import { setFeeling } from "../../../../redux/actions/feeling.actions"
-import { FeelingModel } from "../../../../models/FeelingModel"
+// import { RootState } from "../../../../redux/reducers/rootReducer";
+// import { useSelector, useDispatch } from 'react-redux';
+// import { setFeeling } from "../../../../redux/actions/feeling.actions"
+import { SpecificFeelingModel, FeelingModel } from "../../../../models/FeelingModel"
+import { useAppDispatch, useAppSelector } from "../../../../store/store";
+import { setFeeling } from "../../../../store/features/feelingSlice"
 
 const MoodSlider = () => {
-  let feeling = FEELING;
-  const dispatch = useDispatch();
-  const { feelings } = useSelector((state: RootState) => state.feeling)
+  let feeling2 = FEELING;
+  const dispatch = useAppDispatch();
+  const feeling = useAppSelector((state) => state.feeling.feeling)
+  // const { feelings } = useSelector((state: RootState) => state.feeling)
 
 
   const [indexIconVisible, setIndexIconVisible] = useState(0);
   const [deepFeelingData, setDeepFeelingData] = useState<
     DeepFeelingItemInterface[]
-  >(feeling[indexIconVisible].SpecifyFeeling);
+  >(feeling2[indexIconVisible].SpecifyFeeling);
 
   //To specify the visible element...
   const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
     console.log('viewableItems', viewableItems);
-    const item: FeelingModel = viewableItems[0];
-    dispatch(setFeeling({item.id, item.feelingName, item.SpecifyFeeling}));
+    const id: number = viewableItems[0].item.id;
+    const feelingName: string = viewableItems[0].item.feelingName;
+    const specificFeeling: SpecificFeelingModel[]  =  viewableItems[0].item.SpecifyFeeling;
+    
+    
+    dispatch(setFeeling({id: id, feelingName: feelingName, specificFeeling: specificFeeling}));
+    console.log("name --> ", feelingName);
+    console.log("Data From Store ===>>> ", feeling);
     setIndexIconVisible(Math.round(viewableItems[0].index));
 
   }).current;
@@ -62,17 +71,17 @@ const MoodSlider = () => {
   //if the slider change, then reset the selected deep feeling...
   useEffect(() => {
     // dispatch(setFeeling(feeling[indexIconVisible].SpecifyFeeling))
-    feeling[indexIconVisible].SpecifyFeeling.map(
+    feeling2[indexIconVisible].SpecifyFeeling.map(
       (data) => (data.selected = false)
     );
-    setDeepFeelingData(feeling[indexIconVisible].SpecifyFeeling);
+    setDeepFeelingData(feeling2[indexIconVisible].SpecifyFeeling);
   }, [indexIconVisible]);
 
   return (
         <View className="">
           <View className="px-14 pt-16 m-0">
             <FlatList
-              data={feeling}
+              data={feeling2}
               renderItem={({ item }) => <MoodSlideItem item={item} />}
               horizontal
               pagingEnabled
@@ -81,9 +90,9 @@ const MoodSlider = () => {
               onViewableItemsChanged={handleOnViewableItemsChanged}
               viewabilityConfig={viewabilityConfig}
             />
-            <Pagination data={feeling} index={indexIconVisible} />
+            <Pagination data={feeling2} index={indexIconVisible} />
             <Text className="text-lg font-bold text-black800 text-center">
-              {feeling[indexIconVisible].feelingName.toUpperCase()}
+              {feeling2[indexIconVisible].feelingName.toUpperCase()}
             </Text>
           </View>
           <View className="py-10">

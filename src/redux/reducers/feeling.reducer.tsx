@@ -18,7 +18,7 @@ const initialFeelingState: FeelingState = {
   
 };
 
-export function feelingReducer(state: FeelingState = initialFeelingState, action: FeelingActionModels):FeelingState {
+export function feelingReducer(state: FeelingState = initialFeelingState, action: FeelingActionModels) {
   switch (action.type) {
     case SET_FEELING: {
       return {
