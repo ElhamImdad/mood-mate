@@ -15,7 +15,7 @@ import Pagination from "../../../../components/pagination/Pagination";
 import cn from "classnames";
 import { SpecificFeelingModel, FeelingModel } from "../../../../models/FeelingModel"
 import { useAppDispatch, useAppSelector } from "../../../../store/store";
-import { setFeeling } from "../../../../store/features/feelingSlice"
+import { setActiveFeeling, setSelectedSpecificFeeling } from "../../../../store/features/feelingSlice"
 
 const MoodSlider = () => {
   const feelingBase = FEELING;
@@ -33,9 +33,9 @@ const MoodSlider = () => {
     const id: number = viewableItems[0]?.item.id;
     const feelingName: string = viewableItems[0]?.item.feelingName;
     const specificFeeling: SpecificFeelingModel[]  =  viewableItems[0]?.item.SpecifyFeeling;
+    let feelingItem: FeelingModel  = {id: id, feelingName: feelingName, specificFeeling: specificFeeling}
     
-    
-    dispatch(setFeeling({id: id, feelingName: feelingName, specificFeeling: specificFeeling}));
+    dispatch(setActiveFeeling(feelingItem));
 
     setIndexIconVisible(Math.round(viewableItems[0]?.index));
   }).current;
@@ -46,13 +46,15 @@ const MoodSlider = () => {
   }).current;
 
   const onPressFeelingHandler = (item, indexIconVisible) => {
+    let selectedItem: SpecificFeelingModel = {id: item.id, name: item.name, selected: item.selected};
+    dispatch(setSelectedSpecificFeeling(selectedItem));
     // let renderData = [...deepFeelingData];
-    let renderData = [...deepFeelingData];
+    let renderData = [...feeling.specificFeeling];
     console.log(
       "I am passed----- ",
       indexIconVisible,
       " Feeling --> ",
-      item.name
+      item
     );
     for (let data of renderData) {
       if (data.id == item.id) {
@@ -60,6 +62,7 @@ const MoodSlider = () => {
         break;
       }
     }
+    
     setDeepFeelingData(renderData);
     console.log("Feeling data from store ===>>> ", feeling);
   };

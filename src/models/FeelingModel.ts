@@ -5,7 +5,7 @@ export interface SpecificFeelingModel {
   }
   export interface FeelingModel {
     id: number;
-    img: any;
+    img?: any;
     feelingName: string;
     specificFeeling: SpecificFeelingModel[];
   }

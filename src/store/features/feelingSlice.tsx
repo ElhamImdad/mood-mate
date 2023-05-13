@@ -23,14 +23,19 @@ import {
     name: "feeling",
     initialState,
     reducers:{
-        setFeeling: (state, action: PayloadAction<{ id: number, feelingName: string, specificFeeling: SpecificFeelingModel[]}>) =>  {
+        setActiveFeeling: (state, action: PayloadAction<FeelingModel>) =>  {
             const {id, feelingName, specificFeeling} = action.payload;
             state.feeling.id = id;
             state.feeling.feelingName = feelingName;
             state.feeling.specificFeeling = specificFeeling;
+        },
+        setSelectedSpecificFeeling: (state, action: PayloadAction<SpecificFeelingModel>) => {
+            const selectedItem = action.payload;
+            state.feeling.specificFeeling.map((item) => {if (item.id === selectedItem.id) item.selected= !selectedItem.selected})
         }
+       
     }
   })
 
-  export const {setFeeling} = FeelingSlice.actions;
+  export const {setActiveFeeling, setSelectedSpecificFeeling} = FeelingSlice.actions;
   export default FeelingSlice.reducer;
