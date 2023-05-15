@@ -1,10 +1,10 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Pressable } from "react-native";
 import React from "react";
 import { Type } from "typescript";
 import { CheckBox as CustomCheckbox, Icon } from "@rneui/themed";
 import { useField } from "formik";
 import { SpecificFeelingModel } from "../../models/FeelingModel";
-import colors from "../../utils/colors";
+import cn from "classnames";
 
 const CheckBox = React.forwardRef(({ ...props }: any, ref: any) => {
   let {
@@ -39,24 +39,36 @@ const CheckBox = React.forwardRef(({ ...props }: any, ref: any) => {
 
     const isCheck = field.value.includes(possibleValue.id);
     return (
-      <CustomCheckbox
-        checked={isCheck}
-        onPress={pressCheckboxHandler}
-        key={index}
-        testID={`input-${fieldName}-${possibleValue.id}`}
-        checkedIcon={<Text className="text-white">{labels[index]}</Text>}
-        uncheckedIcon={<Text className="text-black800">{labels[index]}</Text>}
-        checkedColor={"blue"}
-        containerStyle={{
-          backgroundColor: isCheck ? colors.darkSky : colors.white,
-          borderRadius: 6,
-        }}
-      />
+      <View>
+        <Pressable
+          className={cn("rounded-md py-2 px-2.5 mr-2 my-3 ", {
+            " bg-white ": isCheck != true,
+            "bg-darkSky": isCheck == true,
+          })}
+          key={index}
+          onPress={pressCheckboxHandler}
+        >
+          <Text
+            className={cn("text-sm text-black800 font-medium ", {
+              " text-white ": isCheck == true,
+              "text-black800": isCheck != true,
+            })}
+          >
+            {labels[index]}
+          </Text>
+        </Pressable>
+      </View>
     );
   };
 
-  return <ScrollView horizontal showsHorizontalScrollIndicator={false}
-  className="flex flex-nowrap flex-row" >{values?.map(renderCheckBox)}</ScrollView>;
+  return (
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+    >
+      {values?.map(renderCheckBox)}
+    </ScrollView>
+  );
 });
 
 export default CheckBox;
@@ -75,17 +87,26 @@ interface CheckBoxProps {
   borderColor?: "darkSky" | "gray" | "black" | "darkSky";
 }
 
-/* <CheckBox
+{
+  /* <CustomCheckbox
         center
-        // key={id}
-        checked={false}
-        // checkedIcon={<Text className="text-white">{option.name}</Text>}
-        // uncheckedIcon={<Text className="text-black800">{option.name}</Text>}
-        // onPress={() =>
-        //   formikProps.setFieldValue(
-        //     fieldName,
-        //     formikProps.value.filter((i) => i !== option)
-        //   )
-        // }
-        containerStyle={{ backgroundColor: "red", borderRadius: 6, margin: 0 }}
+        checked={isCheck}
+        onPress={pressCheckboxHandler}
+        key={index}
+        testID={`input-${fieldName}-${possibleValue.id}`}
+        checkedIcon={
+          <Text className="text-sm text-black800 font-medium text-white">
+            {labels[index]}
+          </Text>
+        }
+        uncheckedIcon={
+          <Text className="text-sm text-black800 font-medium text-black800">
+            {labels[index]}
+          </Text>
+        }
+        containerStyle={{
+          backgroundColor: isCheck ? colors.darkSky : colors.white,
+          borderRadius: 6,
+        }}
       /> */
+}
