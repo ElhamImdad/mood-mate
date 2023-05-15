@@ -1,5 +1,6 @@
 import { View, Image } from "react-native";
 import React from "react";
+import { FeelingModel } from "../../../../models/FeelingModel";
 
 const MoodSlideItem = React.forwardRef(
   ({ children, ...props }: any, ref: any) => {
@@ -14,16 +15,6 @@ const MoodSlideItem = React.forwardRef(
 
 export default MoodSlideItem;
 
-export interface MoodSlideItemInterface {
+interface MoodSlideItemInterface {
   item: FeelingModel;
 }
-
-export interface FeelingModel {
-    id?: number;
-    img: any;
-    feelingName?: string;
-    SpecifyFeeling: {
-      id: number,
-      name: string,
-    }[];
-  }

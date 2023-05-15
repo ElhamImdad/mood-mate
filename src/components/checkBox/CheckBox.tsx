@@ -4,15 +4,13 @@ import { Type } from "typescript";
 import { CheckBox as CustomCheckbox, Icon } from "@rneui/themed";
 import { useField } from "formik";
 import { SpecificFeelingModel } from "../../models/FeelingModel";
+import colors from "../../utils/colors";
 
-const CheckBox = 
-
-React.forwardRef(({ ...props }: any, ref: any) => {
+const CheckBox = React.forwardRef(({ ...props }: any, ref: any) => {
   let {
     formikProps,
-    // baseFieldName,
     fieldName,
-    baseFielD,
+    // baseFielD,
     values,
     labels,
     // checked,
@@ -23,48 +21,61 @@ React.forwardRef(({ ...props }: any, ref: any) => {
   }: CheckBoxProps = props;
 
   const [field, meta, helpers] = useField(fieldName);
-  // const [baseField, baseMeta, baseHelpers] = useField(baseFieldName);
 
   const renderCheckBox = (possibleValue, index) => {
-    // if (field.value.length !== 0 ){
-    //   let specificFeelingOptionID =  values?.map((item) => item["id"])
-    //   if (!specificFeelingOptionID.includes(field.value[0])){
-    //     helpers.setValue([])
-    //   }
-    // }
-    
     const pressCheckboxHandler = () => {
-      const existingValueIndex = field.value.findIndex((v) => (v === possibleValue.id) );
+      const existingValueIndex = field.value.findIndex(
+        (v) => v === possibleValue.id
+      );
       if (existingValueIndex === -1) {
-        
         helpers.setValue([...field.value, possibleValue.id]);
-        // baseHelpers.setValue(baseField.value, label)
       } else {
-        helpers.setValue(field.value.filter((value, index) => index !== existingValueIndex));
-        console.log('uncheck', field.value);
-        
+        helpers.setValue(
+          field.value.filter((value, index) => index !== existingValueIndex)
+        );
+        console.log("uncheck", field.value);
       }
     };
 
+    const isCheck = field.value.includes(possibleValue.id);
     return (
       <CustomCheckbox
-        checked={field.value.includes(possibleValue.id)}
+        checked={isCheck}
         onPress={pressCheckboxHandler}
         key={index}
         testID={`input-${fieldName}-${possibleValue.id}`}
-        title={labels[index]}
-        checkedColor={'blue'}
+        checkedIcon={<Text className="text-white">{labels[index]}</Text>}
+        uncheckedIcon={<Text className="text-black800">{labels[index]}</Text>}
+        checkedColor={"blue"}
+        containerStyle={{
+          backgroundColor: isCheck ? colors.darkSky : colors.white,
+          borderRadius: 6,
+        }}
       />
     );
-    
-    
-  }
-  
-  return (
-    <ScrollView horizontal>
-    <View className="rounded-md p-0">
-      <ScrollView horizontal>{values?.map(renderCheckBox)}</ScrollView>
-      {/* <CheckBox
+  };
+
+  return <ScrollView horizontal showsHorizontalScrollIndicator={false}
+  className="flex flex-nowrap flex-row" >{values?.map(renderCheckBox)}</ScrollView>;
+});
+
+export default CheckBox;
+
+interface CheckBoxProps {
+  formikProps?: any;
+  fieldName?: any;
+  // baseFielD?: number ;
+  values?: SpecificFeelingModel[];
+  labels?: any;
+  // baseFieldName?: string;
+  // checked: boolean;
+  // value?: string | number;
+  textColor?: "white" | "darkSky" | "gray";
+  bgColor?: "transparent" | "black" | "white" | "gray" | "darkSky";
+  borderColor?: "darkSky" | "gray" | "black" | "darkSky";
+}
+
+/* <CheckBox
         center
         // key={id}
         checked={false}
@@ -77,24 +88,4 @@ React.forwardRef(({ ...props }: any, ref: any) => {
         //   )
         // }
         containerStyle={{ backgroundColor: "red", borderRadius: 6, margin: 0 }}
-      /> */}
-    </View>
-    </ScrollView>
-  );
-});
-
-export default CheckBox;
-
-interface CheckBoxProps {
-  formikProps?: any;
-  fieldName?: any;
-  baseFielD?: number ;
-  values?: SpecificFeelingModel[];
-  labels?: any;
-  // baseFieldName?: string;
-  // checked: boolean;
-  // value?: string | number;
-  textColor?: "white" | "darkSky" | "gray";
-  bgColor?: "transparent" | "black" | "white" | "gray" | "darkSky";
-  borderColor?: "darkSky" | "gray" | "black" | "darkSky";
-}
+      /> */

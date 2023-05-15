@@ -1,10 +1,10 @@
 import { View, Text, Alert } from "react-native";
 import React from "react";
-import Button1 from "../../components/button/Button";
+import Button1 from "../../../components/button/Button";
 import cn from "classnames";
-import colors from "../../utils/colors";
-import { Icon } from "../../utils/Utils";
-import { INSPIRATION } from "../../utils/Constant";
+import colors from "../../../utils/colors";
+import { Icon } from "../../../utils/Utils";
+import { INSPIRATION } from "../../../utils/Constant";
 import { ScrollView, TouchableOpacity  } from "react-native";
 
 const Inspirations = () => {

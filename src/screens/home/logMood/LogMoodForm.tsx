@@ -12,7 +12,6 @@ import Note from "./moodSlider/Note";
 import { useAppSelector } from "../../../store/store";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import CheckBox from "../../../components/checkBox/CheckBox";
 import { useAppDispatch } from "../../../store/store";
 import { setSelectedSpecificFeeling } from "../../../store/features/feelingSlice";
 
@@ -42,9 +41,9 @@ const LogMoodForm: React.FC<{}> = () => {
     note: Yup.string(),
   });
 
-  const selectFeeling = (item) => {
-    dispatch(setSelectedSpecificFeeling({ selectedID: item.id }));
-  };
+  // const selectFeeling = (item) => {
+  //   dispatch(setSelectedSpecificFeeling({ selectedID: item.id }));
+  // };
   const initialValues: FormValues = {
     feeling: "",
     specificFeelingsOption: [],

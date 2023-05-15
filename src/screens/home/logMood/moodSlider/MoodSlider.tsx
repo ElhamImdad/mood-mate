@@ -31,9 +31,9 @@ const MoodSlider = ({formikProps}) => {
   const feeling = useAppSelector((state) => state.feeling.feeling);
 
   const [indexIconVisible, setIndexIconVisible] = useState(0);
-  const [deepFeelingData, setDeepFeelingData] = useState<
-    DeepFeelingItemInterface[]
-  >(feelingBase[indexIconVisible]?.SpecifyFeeling);
+  // const [deepFeelingData, setDeepFeelingData] = useState<
+  //   DeepFeelingItemInterface[]
+  // >(feelingBase[indexIconVisible]?.SpecifyFeeling);
 
   //To specify the visible element...
   const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
@@ -58,34 +58,33 @@ const MoodSlider = ({formikProps}) => {
     itemVisiblePercentThreshold: 50,
   }).current;
 
-  const onPressFeelingHandler = (item, indexIconVisible) => {
-    let selectedItem: SpecificFeelingModel = {
-      id: item.id,
-      name: item.name,
-      selected: item.selected,
-    };
-    // dispatch(setSelectedSpecificFeeling(selectedItem));
-    let renderData = [...deepFeelingData];
-    // let renderData = [...feeling.specificFeeling];
+  // const onPressFeelingHandler = (item, indexIconVisible) => {
+  //   let selectedItem: SpecificFeelingModel = {
+  //     id: item.id,
+  //     name: item.name,
+  //     selected: item.selected,
+  //   };
+  //   // dispatch(setSelectedSpecificFeeling(selectedItem));
+  //   let renderData = [...deepFeelingData];
 
-    for (let data of renderData) {
-      if (data.id == item.id) {
-        data.selected = !data.selected;
-        break;
-      }
-    }
+  //   for (let data of renderData) {
+  //     if (data.id == item.id) {
+  //       data.selected = !data.selected;
+  //       break;
+  //     }
+  //   }
 
-    setDeepFeelingData(renderData);
-  };
+  //   setDeepFeelingData(renderData);
+  // };
 
   //if the slider change, then reset the selected deep feeling...
   useEffect(() => {
-    feeling.specificFeeling?.map((item) => (item.selected = false));
+    // feeling.specificFeeling?.map((item) => (item.selected = false));
 
     formikProps.setFieldValue("specificFeelingsOption", [])
 
 
-    dispatch(resetActiveFeeling());
+    // dispatch(resetActiveFeeling());
     // feelingBase[indexIconVisible]?.SpecifyFeeling.map(
     //   (data) => (data.selected = false)
     // );
@@ -126,7 +125,18 @@ const MoodSlider = ({formikProps}) => {
             labels={feeling.specificFeeling?.map((mood) => mood.name)}
           />
           
-                      {/* <FlatList
+                      
+
+          </View>
+        </>
+      ) : null}
+    </View>
+  );
+};
+
+export default MoodSlider;
+
+{/* <FlatList
               data={feeling.specificFeeling}
               keyExtractor={(childItem) => childItem.id.toString()}
               showsHorizontalScrollIndicator={false}
@@ -153,17 +163,3 @@ const MoodSlider = ({formikProps}) => {
               )}
               horizontal
             /> */}
-
-          </View>
-        </>
-      ) : null}
-    </View>
-  );
-};
-
-export default MoodSlider;
-interface DeepFeelingItemInterface {
-  id: number;
-  name: string;
-  selected?: boolean;
-}
