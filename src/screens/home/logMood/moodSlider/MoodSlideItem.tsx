@@ -7,7 +7,7 @@ const MoodSlideItem = React.forwardRef(
     let { item }: MoodSlideItemInterface = props;
     return (
       <View className="relative items-center px-4">
-        <Image source={item.img} resizeMode="contain"/>
+        <Image source={item.emoji} resizeMode="contain"/>
       </View>
     );
   }

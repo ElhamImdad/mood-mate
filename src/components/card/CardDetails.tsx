@@ -32,7 +32,7 @@ export const CardDetails = ({ data, size }:
 
 export default CardDetails;
 
-export interface CardDetailsInterface {
+interface CardDetailsInterface {
     id?: number;
     day: string,
     month: string,

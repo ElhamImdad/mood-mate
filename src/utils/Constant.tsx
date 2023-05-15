@@ -135,7 +135,7 @@ export const MOOD_ENTRIES = [
 export const FEELING = [
   {
     id: 1,
-    img: require('../../assets/awesome.png'),
+    emoji: require('../../assets/awesome.png'),
     feelingName: 'awesome',
     SpecifyFeeling: [
       {
@@ -162,7 +162,7 @@ export const FEELING = [
   },
   {
     id: 2,
-    img: require('../../assets/good.png'),
+    emoji: require('../../assets/good.png'),
     feelingName: 'good',
     SpecifyFeeling: [
       {
@@ -194,7 +194,7 @@ export const FEELING = [
   },
   {
     id: 3,
-    img: require('../../assets/not_bad.png'),
+    emoji: require('../../assets/not_bad.png'),
     feelingName: 'not bad',
     SpecifyFeeling: [
       {
@@ -216,7 +216,7 @@ export const FEELING = [
   },
   {
     id: 4,
-    img: require('../../assets/bad.png'),
+    emoji: require('../../assets/bad.png'),
     feelingName: 'bad',
     SpecifyFeeling: [
       {
@@ -248,7 +248,7 @@ export const FEELING = [
   },
   {
     id: 5,
-    img: require('../../assets/awful.png'),
+    emoji: require('../../assets/awful.png'),
     feelingName: 'awful',
     SpecifyFeeling: [
       {

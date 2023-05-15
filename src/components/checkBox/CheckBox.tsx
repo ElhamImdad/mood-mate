@@ -13,11 +13,6 @@ const CheckBox = React.forwardRef(({ ...props }: any, ref: any) => {
     // baseFielD,
     values,
     labels,
-    // checked,
-    // value,
-    textColor,
-    bgColor,
-    borderColor,
   }: CheckBoxProps = props;
 
   const [field, meta, helpers] = useField(fieldName);
@@ -39,13 +34,14 @@ const CheckBox = React.forwardRef(({ ...props }: any, ref: any) => {
 
     const isCheck = field.value.includes(possibleValue.id);
     return (
-      <View>
+      <View key={index}
+      testID={`input-${fieldName}-${possibleValue.id}`}>
         <Pressable
           className={cn("rounded-md py-2 px-2.5 mr-2 my-3 ", {
             " bg-white ": isCheck != true,
             "bg-darkSky": isCheck == true,
           })}
-          key={index}
+          
           onPress={pressCheckboxHandler}
         >
           <Text
@@ -79,12 +75,6 @@ interface CheckBoxProps {
   // baseFielD?: number ;
   values?: SpecificFeelingModel[];
   labels?: any;
-  // baseFieldName?: string;
-  // checked: boolean;
-  // value?: string | number;
-  textColor?: "white" | "darkSky" | "gray";
-  bgColor?: "transparent" | "black" | "white" | "gray" | "darkSky";
-  borderColor?: "darkSky" | "gray" | "black" | "darkSky";
 }
 
 {

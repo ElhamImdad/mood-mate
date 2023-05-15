@@ -1,13 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import cn from "classnames";
 import { View, Text, TextInput } from "react-native";
-import colors from "../../utils/colors";
+import { useField } from 'formik';
 import { Type } from "typescript";
 
 const Input = React.forwardRef(({ children, ...props }: any, ref: any) => {
   let {
     placeholder,
     // value,
+    fieldName,
+    formikProps,
     keyboardType,
     bgColor,
     textColor,
@@ -19,19 +21,19 @@ const Input = React.forwardRef(({ children, ...props }: any, ref: any) => {
     maxLength,
     autoFocus,
     label,
-    formikProps,
-    fieldName,
     // onBlur,
     // onChangeText,
     onSubmitEditing,
   }: InputProps = props;
+  const [field, meta] = useField(fieldName);
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <>
       <TextInput
+        testID={`input-${fieldName}`}
         placeholder={placeholder? placeholder : ""}
         onChangeText={formikProps?.handleChange(fieldName)}
-        onSubmitEditing={onSubmitEditing}
         onBlur={formikProps?.handleBlur(fieldName)}
         autoFocus={autoFocus}
         // value={value}
@@ -82,9 +84,9 @@ const Input = React.forwardRef(({ children, ...props }: any, ref: any) => {
           "rounded-2xl": radius === "2xl",
         })}
       />
-      <Text className="text-error">
-        {formikProps?.touched[fieldName] && formikProps?.errors[fieldName]}
-      </Text>
+      {formikProps?.touched[fieldName] && formikProps?.errors[fieldName] && <Text className="text-error">
+        {meta.error}
+      </Text>}
     </>
   );
 });
@@ -112,8 +114,8 @@ interface InputProps {
     maxLength?: number;
     autoFocus?: boolean;
     label?: string;
+    fieldName?: string;
     formikProps?: any;
-    fieldName?: any;
     // onBlur?: () => void;
     // onChangeText?: () => void;
     onSubmitEditing?: ()=> void;

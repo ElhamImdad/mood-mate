@@ -3,6 +3,8 @@ import {
   Text,
   Platform,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard
 } from "react-native";
 import React, { useState } from "react";
 import Button from "../../../components/button/Button";
@@ -10,14 +12,12 @@ import MoodSlider from "./moodSlider/MoodSlider";
 import Modal from "../../../components/modal/Modal";
 import Note from "./moodSlider/Note";
 import { useAppSelector } from "../../../store/store";
-import { Formik } from "formik";
+import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import { useAppDispatch } from "../../../store/store";
-import { setSelectedSpecificFeeling } from "../../../store/features/feelingSlice";
-
-
+import { togleFeelinfForm } from "../../../store/features/feelingSlice";
 interface FormValues {
-  feeling: string; ////Id of specificFeelings selected
+  feelingID: number; ////Id of specificFeelings selected
   specificFeelingsOption: number[]; //Id of specificFeelings selected
   note: string;
 }
@@ -45,7 +45,7 @@ const LogMoodForm: React.FC<{}> = () => {
   //   dispatch(setSelectedSpecificFeeling({ selectedID: item.id }));
   // };
   const initialValues: FormValues = {
-    feeling: "",
+    feelingID: -1,
     specificFeelingsOption: [],
     note: "",
   };
@@ -54,7 +54,8 @@ const LogMoodForm: React.FC<{}> = () => {
       initialValues={initialValues}
       validationSchema={feelingsFormValidationSchema}
       onSubmit={(values, actions) => {
-        console.log({ values, actions });
+        dispatch(togleFeelinfForm())
+        console.log({ values });
 
         alert(JSON.stringify(values, null, 2));
 
@@ -77,30 +78,31 @@ const LogMoodForm: React.FC<{}> = () => {
                 textColor="white"
                 mx={48}
                 my={20}
-                onPress={formikProps.handleSubmit}
+                onPress={nextFeelingHandler}
               >
                 Next
               </Button>
             )}
 
-            {/* <TouchableWithoutFeedback onPress={Keyboard.dismiss}> */}
+            
             <Modal
               visible={noteModalVisible}
               onRequestClose={toggleNoteModal}
               transparent={true}
               animationType="slide"
             >
+              <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View className="flex-1 flex-col justify-end">
                 <KeyboardAvoidingView
                   enabled={true}
                   behavior={Platform.OS === "ios" ? "padding" : "height"}
                   keyboardVerticalOffset={0}
                 >
-                  <Note toggleClose={toggleNoteModal} />
+                  <Note formikProps={formikProps} submitForm={formikProps.handleSubmit} toggleClose={toggleNoteModal} />
                 </KeyboardAvoidingView>
               </View>
+              </TouchableWithoutFeedback>
             </Modal>
-            {/* </TouchableWithoutFeedback> */}
           </View>
         </View>
       )}

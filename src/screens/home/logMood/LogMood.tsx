@@ -5,18 +5,18 @@ import { Icon } from "../../../utils/Utils";
 import Modal from "../../../components/modal/Modal";
 import colors from "../../../utils/colors";
 import LogMoodDetails from "./LogMoodForm";
+import { useAppSelector, useAppDispatch } from "../../../store/store"
+import { togleFeelinfForm } from "../../../store/features/feelingSlice";
 
 const LogMood = () => {
-  const [moodModalVisible, setMoodModalVisible] = useState(false);
+  const feelingFormVisible = useAppSelector((state) => state.feeling.isFeelingFormVisible);
+  const dispatch = useAppDispatch()
 
-  const toggleLogMood = (): void => {
-    setMoodModalVisible(!moodModalVisible);
-  };
   return (
     <View className="flex justify-end">
       <Modal
-        visible={moodModalVisible}
-        onRequestClose={toggleLogMood}
+        visible={feelingFormVisible}
+        onRequestClose={() => dispatch(togleFeelinfForm())}
         pageStyle="pageSheet"
         animationType="slide"
         transparent={false}
@@ -29,7 +29,7 @@ const LogMood = () => {
         mx={48}
         my={20}
         pr_title={6}
-        onPress={toggleLogMood}
+        onPress={() => dispatch(togleFeelinfForm())}
       >
         Log your mood
         <Icon name="plus" color={colors.white} />

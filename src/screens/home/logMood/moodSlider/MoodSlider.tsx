@@ -19,9 +19,7 @@ import {
 } from "../../../../models/FeelingModel";
 import { useAppDispatch, useAppSelector } from "../../../../store/store";
 import {
-  resetActiveFeeling,
   setActiveFeeling,
-  setSelectedSpecificFeeling,
 } from "../../../../store/features/feelingSlice";
 import CheckBox from "../../../../components/checkBox/CheckBox";
 
@@ -40,15 +38,18 @@ const MoodSlider = ({formikProps}) => {
     // console.log('viewableItems', viewableItems);
     const id: number = viewableItems[0]?.item.id;
     const feelingName: string = viewableItems[0]?.item.feelingName;
+    const emogi: string = viewableItems[0]?.item.emoji;
     const specificFeeling: SpecificFeelingModel[] =
       viewableItems[0]?.item.SpecifyFeeling;
     let feelingItem: FeelingModel = {
       id: id,
       feelingName: feelingName,
+      emoji: emogi,
       specificFeeling: specificFeeling,
     };
 
     dispatch(setActiveFeeling(feelingItem));
+    formikProps.setFieldValue("feelingID", id)
 
     setIndexIconVisible(Math.round(viewableItems[0]?.index));
   }).current;
@@ -83,8 +84,6 @@ const MoodSlider = ({formikProps}) => {
 
     formikProps.setFieldValue("specificFeelingsOption", [])
 
-
-    // dispatch(resetActiveFeeling());
     // feelingBase[indexIconVisible]?.SpecifyFeeling.map(
     //   (data) => (data.selected = false)
     // );
@@ -135,6 +134,7 @@ const MoodSlider = ({formikProps}) => {
 };
 
 export default MoodSlider;
+
 
 {/* <FlatList
               data={feeling.specificFeeling}

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { FeelingModel, SpecificFeelingModel } from "../../models/FeelingModel";
 
 interface FeelingState {
-  // id: number;
+  isFeelingFormVisible: boolean;
   feeling: FeelingModel;
   // totalFeelings: FeelingModel[];
 }
@@ -11,7 +11,7 @@ interface FeelingState {
 // }
 
 const initialState: FeelingState = {
-  // id: 0,
+  isFeelingFormVisible: false,
   feeling: {} as FeelingModel,
   // totalFeelings: [],
 };
@@ -35,14 +35,12 @@ export const FeelingSlice = createSlice({
         if (item.id === id) item.selected = !item.selected;
       });
     },
-    resetActiveFeeling: (state) => {
-      state.feeling.specificFeeling?.map((item) => {
-        item.selected = false;
-      });
+    togleFeelinfForm: (state) => {
+      state.isFeelingFormVisible = !state.isFeelingFormVisible;
     }
   },
 });
 
-export const { setActiveFeeling, setSelectedSpecificFeeling, resetActiveFeeling } =
+export const { setActiveFeeling, setSelectedSpecificFeeling, togleFeelinfForm } =
   FeelingSlice.actions;
 export default FeelingSlice.reducer;
