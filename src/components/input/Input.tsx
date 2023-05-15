@@ -1,15 +1,13 @@
 import React from "react";
 import cn from "classnames";
-import { View, TouchableHighlight, TextInput } from "react-native";
+import { View, Text, TextInput } from "react-native";
 import colors from "../../utils/colors";
 import { Type } from "typescript";
 
 const Input = React.forwardRef(({ children, ...props }: any, ref: any) => {
   let {
     placeholder,
-    onChangeText,
-    moreProps,
-    value,
+    // value,
     keyboardType,
     bgColor,
     textColor,
@@ -19,15 +17,24 @@ const Input = React.forwardRef(({ children, ...props }: any, ref: any) => {
     space,
     multiline,
     maxLength,
+    autoFocus,
+    label,
+    formikProps,
+    fieldName,
+    // onBlur,
+    // onChangeText,
     onSubmitEditing,
   }: InputProps = props;
 
   return (
     <>
       <TextInput
-        placeholder={placeholder ? placeholder : ""}
-        onChangeText={onChangeText}
-        value={value}
+        placeholder={placeholder? placeholder : ""}
+        onChangeText={formikProps?.handleChange(fieldName)}
+        onSubmitEditing={onSubmitEditing}
+        onBlur={formikProps?.handleBlur(fieldName)}
+        autoFocus={autoFocus}
+        // value={value}
         maxLength={maxLength}
         keyboardType={
           keyboardType === "number-pad"
@@ -45,7 +52,6 @@ const Input = React.forwardRef(({ children, ...props }: any, ref: any) => {
             : "default"
         }
         multiline={!multiline?false:multiline}
-        onSubmitEditing={onChangeText}
         className={cn("p-5 border boreder-gray400 text-base hover:border-darkSxky", size, space, {
           //borderColoe
           "border-gray400": !borderColor || borderColor === "gray",
@@ -76,6 +82,9 @@ const Input = React.forwardRef(({ children, ...props }: any, ref: any) => {
           "rounded-2xl": radius === "2xl",
         })}
       />
+      <Text className="text-error">
+        {formikProps?.touched[fieldName] && formikProps?.errors[fieldName]}
+      </Text>
     </>
   );
 });
@@ -84,9 +93,8 @@ export default Input;
 
 interface InputProps {
   placeholder?: string;
-  onChangeText: () => void;
   moreProps?: Type;
-  value: string;
+  // value?: string;
   bgColor?: "transparent" | "black" | "white" | "gray" | "darkSky";
   textColor?: "white" | "darkSky" | "gray";
   borderColor?: "transparent" | "black" | "white" | "gray" | "darkSky";
@@ -102,5 +110,11 @@ interface InputProps {
     | "url";
     multiline?: boolean;
     maxLength?: number;
+    autoFocus?: boolean;
+    label?: string;
+    formikProps?: any;
+    fieldName?: any;
+    // onBlur?: () => void;
+    // onChangeText?: () => void;
     onSubmitEditing?: ()=> void;
 }

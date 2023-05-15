@@ -9,4 +9,5 @@ module.exports = {
     gray100: "#313131",
     white50: "#F9F9FB",
     darkSky: "#4C9FC1",
+    error: "#dc2626",
   };

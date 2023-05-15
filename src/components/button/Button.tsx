@@ -3,31 +3,35 @@ import cn from "classnames";
 import { View, TouchableHighlight, Text } from "react-native";
 import { Button } from "@rneui/themed";
 import colors from "../../utils/colors";
+import { Type } from "typescript";
 
 const Button1 = React.forwardRef(({ children, ...props }: any, ref: any) => {
   let {
+    disabled,
     type,
     radius,
     textColor,
     bgColor,
     borderColor,
-    onPress,
     px,
     py,
     pr_title,
     pl_title,
     mx,
     my,
+    onPress,
   }: ButtonProps = props;
 
   return (
     <>
       <Button
+        onPress={onPress}
         radius={radius ? radius : "lg"}
         type={type ? type : "solid"}
+        disabled={disabled}
         titleStyle={{
           color: `${
-            (!textColor && type!=="solid")|| (!bgColor && type!=="solid")
+            (!textColor && type !== "solid") || (!bgColor && type !== "solid")
               ? colors.darkSky
               : textColor === "white" || bgColor === "darkSky"
               ? colors.white
@@ -35,8 +39,8 @@ const Button1 = React.forwardRef(({ children, ...props }: any, ref: any) => {
               ? colors.gray400
               : colors.black800
           }`,
-          paddingRight: pr_title? pr_title: 0,
-          paddingLeft: pl_title? pl_title: 0,
+          paddingRight: pr_title ? pr_title : 0,
+          paddingLeft: pl_title ? pl_title : 0,
         }}
         buttonStyle={{
           backgroundColor: `${
@@ -74,7 +78,6 @@ const Button1 = React.forwardRef(({ children, ...props }: any, ref: any) => {
           marginHorizontal: mx ? mx : 0,
           marginVertical: my ? my : 0,
         }}
-        onPress={onPress}
       >
         {children}
       </Button>
@@ -96,5 +99,6 @@ interface ButtonProps {
   textColor?: "white" | "darkSky" | "gray";
   bgColor?: "transparent" | "black" | "white" | "gray" | "darkSky";
   borderColor?: "darkSky" | "gray" | "black" | "darkSky";
+  disabled?: boolean;
   onPress: () => void;
 }
