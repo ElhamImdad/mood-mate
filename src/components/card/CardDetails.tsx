@@ -2,7 +2,7 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { ListItem, Divider } from "@rneui/themed";
 import { EntriesFeelingModel } from "../../models/FeelingModel";
-import { SubstringFirstLetters } from "../../utils/Utils";
+import { getMonthName } from "../../utils/Utils";
 import { FEELING } from "../../utils/Constant";
 
 export const CardDetails = ({ data }: { data: EntriesFeelingModel }) => {
@@ -20,7 +20,7 @@ export const CardDetails = ({ data }: { data: EntriesFeelingModel }) => {
           <View className="flex items-center justify-center pr-3 space-y-2">
             <Text className="text-sm font-bold text-black800">{data.day}</Text>
             <Text className="text-sm font-bold text-black800">
-              {SubstringFirstLetters(data.month, 3)}
+              {getMonthName(Number.parseInt(data.month))}
             </Text>
           </View>
           <Divider orientation="vertical" width={1} />

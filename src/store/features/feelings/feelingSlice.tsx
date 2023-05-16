@@ -19,7 +19,7 @@ const initialState: FetchFeelingsState = {
 // Generates pending, fulfilled and rejected action types
 export const fetchFeelings = createAsyncThunk("feelings/fetchfeelings", () => {
   return axios
-    .get("https://run.mocky.io/v3/7ef58f5e-4b6b-4e5b-9447-ccfcddd6a7ed")
+    .get("https://run.mocky.io/v3/5d17df96-978f-44d2-83bc-fb8dcd8d22e9")
     .then((response) => response.data);
 });
 

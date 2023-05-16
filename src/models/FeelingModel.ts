@@ -13,6 +13,7 @@ export interface SpecificFeelingModel {
     id: number;
     day: string;
     month: string;
+    year: string;
     feelingName: string;
     specificFeeling: SpecificFeelingModel[];
     note?: string;
