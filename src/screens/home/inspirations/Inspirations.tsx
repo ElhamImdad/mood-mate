@@ -1,11 +1,10 @@
 import { View, Text, Alert } from "react-native";
 import React from "react";
-import Button1 from "../../../components/button/Button";
-import cn from "classnames";
 import colors from "../../../utils/colors";
 import { Icon } from "../../../utils/Utils";
 import { INSPIRATION } from "../../../utils/Constant";
-import { ScrollView, TouchableOpacity  } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
+import Card from "../../../components/card/Card";
 
 const Inspirations = () => {
   const inspiration = INSPIRATION;
@@ -21,20 +20,25 @@ const Inspirations = () => {
         {inspiration.length === 0
           ? null
           : inspiration.map((inspirationItem, i) => (
-              <TouchableOpacity  className="bg-white rounded-[20px] p-5" key={i} onPress={() => alert(inspirationItem.title)}>
-                <Icon
-                  name={
-                    i == 0
-                      ? "music"
-                      : i == 1
-                      ? "play-circle-outline"
-                      : i == 2
-                      ? "book-open-variant"
-                      : "hand-heart-outline"
-                  }
-                  color={colors.black800}
-                />
-              </TouchableOpacity >
+              <TouchableOpacity
+                key={i}
+                onPress={() => alert(inspirationItem.title)}
+              >
+                <Card>
+                  <Icon
+                    name={
+                      i == 0
+                        ? "music"
+                        : i == 1
+                        ? "play-circle-outline"
+                        : i == 2
+                        ? "book-open-variant"
+                        : "hand-heart-outline"
+                    }
+                    color={colors.black800}
+                  />
+                </Card>
+              </TouchableOpacity>
             ))}
       </ScrollView>
     </View>

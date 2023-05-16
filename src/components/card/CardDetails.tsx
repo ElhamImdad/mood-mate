@@ -7,11 +7,9 @@ import { FEELING } from "../../utils/Constant";
 
 export const CardDetails = ({ data }: { data: EntriesFeelingModel }) => {
   const getEmogi = () => {
-    const feelingEmogi = FEELING?.find(item => item.id == data.id);
-    return feelingEmogi.emoji
-  }
-
-  
+    const feelingEmogi = FEELING?.find((item) => item.id == data.id);
+    return feelingEmogi.emoji;
+  };
   return (
     <>
       <ListItem
@@ -46,12 +44,15 @@ export const CardDetails = ({ data }: { data: EntriesFeelingModel }) => {
             </View>
           </View>
         </ListItem.Content>
-        <View >
+        <View>
           {
-           <Image className="h-10 w-10"  source={getEmogi()} resizeMode="contain" />
+            <Image
+              className="h-10 w-10"
+              source={getEmogi()}
+              resizeMode="contain"
+            />
           }
-            {/* <Image source={item.emoji} resizeMode="contain" /> */}
-      
+          {/* <Image source={item.emoji} resizeMode="contain" /> */}
         </View>
       </ListItem>
     </>

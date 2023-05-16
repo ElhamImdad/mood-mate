@@ -1,13 +1,11 @@
 import { View, Text } from "react-native";
 import React, { useEffect } from "react";
 import CardDetails from "../../components/card/CardDetails";
-import { MOOD_ENTRIES } from "../../utils/Constant";
 import { ScrollView } from "react-native";
 import { useAppSelector, useAppDispatch } from "../../store/store";
 import { fetchFeelings } from "../../store/features/feelings/feelingSlice";
 
 const Entries = () => {
-  // let mood_entries = MOOD_ENTRIES;
   const feelingsList = useAppSelector((state) => state.fetchfeelings);
   const dispatch = useAppDispatch();
 
