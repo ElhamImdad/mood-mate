@@ -1,0 +1,1 @@
+export const feelingListURL = "/v3/7ef58f5e-4b6b-4e5b-9447-ccfcddd6a7ed"

@@ -15,7 +15,7 @@ import { useAppSelector } from "../../../store/store";
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 import { useAppDispatch } from "../../../store/store";
-import { togleFeelinfForm } from "../../../store/features/feelingSlice";
+import { togleFeelinfForm } from "../../../store/features/feelings/feelingUtilsSlice";
 interface FormValues {
   feelingID: number; ////Id of specificFeelings selected
   specificFeelingsOption: number[]; //Id of specificFeelings selected
@@ -25,7 +25,7 @@ interface FormValues {
 const LogMoodForm: React.FC<{}> = () => {
   const [noteModalVisible, setNoteModalVisible] = useState(false);
   const dispatch = useAppDispatch();
-  const feeling = useAppSelector((state) => state.feeling.feeling);
+  const feeling = useAppSelector((state) => state.feelingUtils.feeling);
 
   const toggleNoteModal = (): void => {
     setNoteModalVisible(!noteModalVisible);
@@ -41,9 +41,6 @@ const LogMoodForm: React.FC<{}> = () => {
     note: Yup.string(),
   });
 
-  // const selectFeeling = (item) => {
-  //   dispatch(setSelectedSpecificFeeling({ selectedID: item.id }));
-  // };
   const initialValues: FormValues = {
     feelingID: -1,
     specificFeelingsOption: [],

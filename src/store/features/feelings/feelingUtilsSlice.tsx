@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FeelingModel, SpecificFeelingModel } from "../../models/FeelingModel";
+import { FeelingModel, SpecificFeelingModel } from "../../../models/FeelingModel";
 
 interface FeelingState {
   isFeelingFormVisible: boolean;
@@ -16,7 +16,7 @@ const initialState: FeelingState = {
   // totalFeelings: [],
 };
 
-export const FeelingSlice = createSlice({
+export const FeelingUtilsSlice = createSlice({
   name: "feeling",
   initialState,
   reducers: {
@@ -26,21 +26,21 @@ export const FeelingSlice = createSlice({
       state.feeling.feelingName = feelingName;
       state.feeling.specificFeeling = specificFeeling;
     },
-    setSelectedSpecificFeeling: (
-      state,
-      action: PayloadAction<{ selectedID: number }>
-    ) => {
-      const id = action.payload.selectedID;
-      state.feeling.specificFeeling.map((item) => {
-        if (item.id === id) item.selected = !item.selected;
-      });
-    },
+    // setSelectedSpecificFeeling: (
+    //   state,
+    //   action: PayloadAction<{ selectedID: number }>
+    // ) => {
+    //   const id = action.payload.selectedID;
+    //   state.feeling.specificFeeling.map((item) => {
+    //     if (item.id === id) item.selected = !item.selected;
+    //   });
+    // },
     togleFeelinfForm: (state) => {
       state.isFeelingFormVisible = !state.isFeelingFormVisible;
     }
   },
 });
 
-export const { setActiveFeeling, setSelectedSpecificFeeling, togleFeelinfForm } =
-  FeelingSlice.actions;
-export default FeelingSlice.reducer;
+export const { setActiveFeeling, togleFeelinfForm } =
+FeelingUtilsSlice.actions;
+export default FeelingUtilsSlice.reducer;

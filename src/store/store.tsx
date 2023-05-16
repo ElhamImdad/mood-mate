@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { FeelingSlice } from "./features/feelingSlice";
+import { FeelingUtilsSlice } from "./features/feelings/feelingUtilsSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import feelingSlice from "./features/feelings/feelingSlice";
 
 export const store = configureStore({
     reducer: {
-        feeling: FeelingSlice.reducer
+        feelingUtils: FeelingUtilsSlice.reducer,
+        fetchfeelings: feelingSlice,
     }
 })
 

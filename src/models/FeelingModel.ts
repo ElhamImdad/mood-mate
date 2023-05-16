@@ -1,11 +1,19 @@
 export interface SpecificFeelingModel {
     id: number;
     name: string;
-    selected?: boolean;
   }
   export interface FeelingModel {
     id: number;
-    emoji: string;
+    emoji: any;
     feelingName: string;
     specificFeeling: SpecificFeelingModel[];
+  }
+
+  export interface EntriesFeelingModel {
+    id: number;
+    day: string;
+    month: string;
+    feelingName: string;
+    specificFeeling: SpecificFeelingModel[];
+    note?: string;
   }

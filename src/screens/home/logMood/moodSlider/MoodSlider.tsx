@@ -18,27 +18,21 @@ import {
   FeelingModel,
 } from "../../../../models/FeelingModel";
 import { useAppDispatch, useAppSelector } from "../../../../store/store";
-import {
-  setActiveFeeling,
-} from "../../../../store/features/feelingSlice";
+import { setActiveFeeling } from "../../../../store/features/feelings/feelingUtilsSlice";
 import CheckBox from "../../../../components/checkBox/CheckBox";
 
-const MoodSlider = ({formikProps}) => {
+const MoodSlider = ({ formikProps }) => {
   const feelingBase = FEELING;
   const dispatch = useAppDispatch();
-  const feeling = useAppSelector((state) => state.feeling.feeling);
+  const feeling = useAppSelector((state) => state.feelingUtils.feeling);
 
   const [indexIconVisible, setIndexIconVisible] = useState(0);
-  // const [deepFeelingData, setDeepFeelingData] = useState<
-  //   DeepFeelingItemInterface[]
-  // >(feelingBase[indexIconVisible]?.SpecifyFeeling);
 
   //To specify the visible element...
   const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
-    // console.log('viewableItems', viewableItems);
     const id: number = viewableItems[0]?.item.id;
     const feelingName: string = viewableItems[0]?.item.feelingName;
-    const emogi: string = viewableItems[0]?.item.emoji;
+    const emogi: any = viewableItems[0]?.item.emoji;
     const specificFeeling: SpecificFeelingModel[] =
       viewableItems[0]?.item.SpecifyFeeling;
     let feelingItem: FeelingModel = {
@@ -49,7 +43,7 @@ const MoodSlider = ({formikProps}) => {
     };
 
     dispatch(setActiveFeeling(feelingItem));
-    formikProps.setFieldValue("feelingID", id)
+    formikProps.setFieldValue("feelingID", id);
 
     setIndexIconVisible(Math.round(viewableItems[0]?.index));
   }).current;
@@ -59,35 +53,9 @@ const MoodSlider = ({formikProps}) => {
     itemVisiblePercentThreshold: 50,
   }).current;
 
-  // const onPressFeelingHandler = (item, indexIconVisible) => {
-  //   let selectedItem: SpecificFeelingModel = {
-  //     id: item.id,
-  //     name: item.name,
-  //     selected: item.selected,
-  //   };
-  //   // dispatch(setSelectedSpecificFeeling(selectedItem));
-  //   let renderData = [...deepFeelingData];
-
-  //   for (let data of renderData) {
-  //     if (data.id == item.id) {
-  //       data.selected = !data.selected;
-  //       break;
-  //     }
-  //   }
-
-  //   setDeepFeelingData(renderData);
-  // };
-
   //if the slider change, then reset the selected deep feeling...
   useEffect(() => {
-    // feeling.specificFeeling?.map((item) => (item.selected = false));
-
-    formikProps.setFieldValue("specificFeelingsOption", [])
-
-    // feelingBase[indexIconVisible]?.SpecifyFeeling.map(
-    //   (data) => (data.selected = false)
-    // );
-    // setDeepFeelingData(feelingBase[indexIconVisible]?.SpecifyFeeling);
+    formikProps.setFieldValue("specificFeelingsOption", []);
   }, [indexIconVisible]);
 
   return (
@@ -115,17 +83,13 @@ const MoodSlider = ({formikProps}) => {
               Specify your feeling
             </Text>
 
-            
             <CheckBox
-            fieldName="specificFeelingsOption"
-            // baseFieldName="feeling"
-            baseFieldID={feeling.feelingName}
-            values={feeling.specificFeeling}
-            labels={feeling.specificFeeling?.map((mood) => mood.name)}
-          />
-          
-                      
-
+              fieldName="specificFeelingsOption"
+              // baseFieldName="feeling"
+              baseFieldID={feeling.feelingName}
+              values={feeling.specificFeeling}
+              labels={feeling.specificFeeling?.map((mood) => mood.name)}
+            />
           </View>
         </>
       ) : null}
@@ -134,32 +98,3 @@ const MoodSlider = ({formikProps}) => {
 };
 
 export default MoodSlider;
-
-
-{/* <FlatList
-              data={feeling.specificFeeling}
-              keyExtractor={(childItem) => childItem.id.toString()}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item, index }) => (
-                <Pressable
-                  className={cn("rounded-md py-2 px-2.5 mr-2 my-3 ", {
-                    " bg-white ": item.selected != true,
-                    "bg-darkSky": item.selected == true,
-                  })}
-                  key={item.id}
-                  // dispatch(setSelectedSpecificFeeling({ selectedID: item.id }))
-                  onPress={() => setFieldValue("specificFeelingsOption", item.id)}
-                >
-                  <Text
-                    className={cn("text-sm text-black800 font-medium ", {
-                      " text-white ": item.selected == true,
-                      "text-black800": item.selected != true,
-                    })}
-                  >
-                  
-                    {item.name}
-                  </Text>
-                </Pressable>
-              )}
-              horizontal
-            /> */}

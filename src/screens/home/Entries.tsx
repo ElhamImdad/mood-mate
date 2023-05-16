@@ -1,19 +1,35 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import CardDetails from "../../components/card/CardDetails";
 import { MOOD_ENTRIES } from "../../utils/Constant";
 import { ScrollView } from "react-native";
+import { useAppSelector, useAppDispatch } from "../../store/store";
+import { fetchFeelings } from "../../store/features/feelings/feelingSlice";
 
 const Entries = () => {
-  let mood_entries = MOOD_ENTRIES;
+  // let mood_entries = MOOD_ENTRIES;
+  const feelingsList = useAppSelector((state) => state.fetchfeelings);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFeelings())
+  }, [])
+
   return (
     <View className="flex-1">
       <Text className="text-black800 text-2xl font-extrabold">May 2023</Text>
-      <ScrollView className="mt-4" showsVerticalScrollIndicator={false}>
-        {mood_entries.map((item, i) => (
-          <CardDetails data={item} key={i}/>
-        ))}
-      </ScrollView>
+      {feelingsList.loading && <Text className="text-gray400">Loading...</Text>}
+      {!feelingsList.loading && feelingsList.error ? (
+        <Text className="text-error">Error: {feelingsList.error}</Text>
+      ) : null}
+
+      { !feelingsList.loading && feelingsList.feelingsList.length? (
+        <ScrollView className="mt-4" showsVerticalScrollIndicator={false}>
+          {feelingsList.feelingsList.map((item, i) => (
+            <CardDetails data={item} key={i} />
+          ))}
+        </ScrollView>):null
+      }
     </View>
   );
 };

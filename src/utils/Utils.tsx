@@ -14,3 +14,7 @@ export function TabBarIcon(props: {
     return <MaterialCommunityIcons size={25} style={{ marginBottom: -3 }} {...props} />;
   }
 
+  // To substring the first 3 litters
+export function SubstringFirstLetters(text: string, count: number) {
+  return text.substring(0, count)
+}

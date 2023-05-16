@@ -6,10 +6,10 @@ import Modal from "../../../components/modal/Modal";
 import colors from "../../../utils/colors";
 import LogMoodDetails from "./LogMoodForm";
 import { useAppSelector, useAppDispatch } from "../../../store/store"
-import { togleFeelinfForm } from "../../../store/features/feelingSlice";
+import { togleFeelinfForm } from "../../../store/features/feelings/feelingUtilsSlice";
 
 const LogMood = () => {
-  const feelingFormVisible = useAppSelector((state) => state.feeling.isFeelingFormVisible);
+  const feelingFormVisible = useAppSelector((state) => state.feelingUtils.isFeelingFormVisible);
   const dispatch = useAppDispatch()
 
   return (
