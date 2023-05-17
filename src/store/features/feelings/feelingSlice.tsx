@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { EntriesFeelingModel } from "../../../models/FeelingModel";
-import { axiosInstance } from "../../../services/axios";
-import { feelingListURL } from "../../../services/apis";
-import axios from "axios";
+import { axiosInstance } from "../../../services/axios/axios";
+import { feelingListURL } from "../../../services/axios/apis";
 
 type FetchFeelingsState = {
   loading: boolean;
@@ -18,8 +17,8 @@ const initialState: FetchFeelingsState = {
 
 // Generates pending, fulfilled and rejected action types
 export const fetchFeelings = createAsyncThunk("feelings/fetchfeelings", () => {
-  return axios
-    .get("https://run.mocky.io/v3/5d17df96-978f-44d2-83bc-fb8dcd8d22e9")
+  return axiosInstance
+    .get(feelingListURL)
     .then((response) => response.data);
 });
 

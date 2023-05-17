@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#4C9FC1"
     },
@@ -19,12 +19,25 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/splash.png",
+        "foregroundImage": "./assets/images/splash.png",
         "backgroundColor": "#4C9FC1"
       }
     },
     "web": {
-      "favicon": "./assets/splash.png"
-    }
+      "favicon": "./assets/images/splash.png"
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/push-notification.png",
+          "color": "#ffffff",
+          "sounds": [
+            "./assets/sounds/notification-sound-1.wav",
+            "./assets/sounds/notification-sound-2.wav"
+          ]
+        }
+      ]
+    ]
   }
 }
