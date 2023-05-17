@@ -7,12 +7,23 @@ import { store } from "./src/store/store";
 import {
   scheduleNotifications,
   registerForPushNotifications,
+  registerNotificationHandlers,
 } from "./src/services/notification/PushNotification";
+import { setNotificationHandler } from "expo-notifications";
+
+setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 export default function App() {
   useEffect(() => {
     registerForPushNotifications();
     scheduleNotifications();
+    registerNotificationHandlers();
   }, []);
   return (
     <SafeAreaProvider>

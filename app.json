@@ -4,7 +4,7 @@
     "slug": "mood-mate",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -33,8 +33,7 @@
           "icon": "./assets/images/push-notification.png",
           "color": "#ffffff",
           "sounds": [
-            "./assets/sounds/notification-sound-1.wav",
-            "./assets/sounds/notification-sound-2.wav"
+            "./assets/sounds/notification-sound-1.wav"
           ]
         }
       ]

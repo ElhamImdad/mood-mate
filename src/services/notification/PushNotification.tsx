@@ -1,6 +1,25 @@
+import React, {useEffect, useRef} from 'react';
 import { Platform } from "react-native";
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
+
+const handleNotificationReceived = (notification: Notifications.Notification) => {
+  // Handle the received notification when the app is in the foreground
+  console.log('Notification received:', notification);
+};
+
+export const registerNotificationHandlers = () => {
+    const notificationListener = Notifications.addNotificationReceivedListener(handleNotificationReceived);
+    const responseListener = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log('Notification received: ', response);
+    });
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener);
+      Notifications.removeNotificationSubscription(responseListener);
+    };
+
+};
 
 export const scheduleNotifications = () => {
   Notifications.scheduleNotificationAsync({
@@ -9,8 +28,8 @@ export const scheduleNotifications = () => {
       body: "Take a break and add today's entry.",
     },
     trigger: {
-      hour: 7, // Morning notification time
-      minute: 16,
+      hour: 10, // Morning notification time
+      minute: 9,
       repeats: true,
     },
   });
