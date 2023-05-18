@@ -4,7 +4,6 @@ import CardDetails from "../../components/card/CardDetails";
 import { useAppSelector, useAppDispatch } from "../../store/store";
 import { Skeleton } from "@rneui/themed";
 import { fetchFeelings } from "../../store/features/feelings/feelingSlice";
-import { WIDTH } from "../../utils/Constant";
 import colors from "../../utils/colors";
 
 const Entries = () => {
@@ -25,7 +24,7 @@ const Entries = () => {
             <Skeleton
               animation="pulse"
               height={70}
-              skeletonStyle={{ backgroundColor: "white" }}
+              skeletonStyle={{ backgroundColor: colors.white }}
             />
           </View>
         ))}

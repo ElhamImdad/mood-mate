@@ -23,7 +23,7 @@ const Stats = () => {
   );
 
   const daysInMonth = getDaysInMonth(filterYear, filterMonth);
-  console.log(daysInMonth);
+  // console.log(daysInMonth);
 
   const date = new Date();
   const currentYear = date.getFullYear();
