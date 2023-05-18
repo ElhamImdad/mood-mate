@@ -2,17 +2,11 @@ import {
   View,
   Text,
   FlatList,
-  Pressable,
-  TextInput,
-  KeyboardAvoidingView,
-  ScrollView,
-  Platform,
 } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
 import { FEELING } from "../../../../utils/Constant";
 import MoodSlideItem from "./MoodSlideItem";
 import Pagination from "../../../../components/pagination/Pagination";
-import cn from "classnames";
 import {
   SpecificFeelingModel,
   FeelingModel,
@@ -34,7 +28,7 @@ const MoodSlider = ({ formikProps }) => {
     const feelingName: string = viewableItems[0]?.item.feelingName;
     const emogi: any = viewableItems[0]?.item.emoji;
     const specificFeeling: SpecificFeelingModel[] =
-      viewableItems[0]?.item.SpecifyFeeling;
+      viewableItems[0]?.item.specificFeeling;
     let feelingItem: FeelingModel = {
       id: id,
       feelingName: feelingName,
@@ -53,16 +47,16 @@ const MoodSlider = ({ formikProps }) => {
     itemVisiblePercentThreshold: 50,
   }).current;
 
-  //if the slider change, then reset the selected deep feeling...
+  //if the slider change, then reset the selected soecific feeling...
   useEffect(() => {
     formikProps.setFieldValue("specificFeelingsOption", []);
   }, [indexIconVisible]);
 
   return (
-    <View className="">
+    <>
       {feelingBase ? (
-        <>
-          <View className="px-14 pt-16 m-0">
+        <View className="grow flex flex-col flex-wrap justify-between py-10">
+          <View className="px-14 space-y-6">
             <FlatList
               data={feelingBase}
               renderItem={({ item }) => <MoodSlideItem item={item} />}
@@ -73,27 +67,29 @@ const MoodSlider = ({ formikProps }) => {
               onViewableItemsChanged={handleOnViewableItemsChanged}
               viewabilityConfig={viewabilityConfig}
             />
-            <Pagination data={feelingBase} index={indexIconVisible} />
+
+            <View>
+              <Pagination data={feelingBase} index={indexIconVisible} />
+            </View>
             <Text className="text-lg font-bold text-black800 text-center">
               {feelingBase[indexIconVisible]?.feelingName.toUpperCase()}
             </Text>
           </View>
-          <View className="py-10">
+          <View className="pt-10 justify-center">
             <Text className="text-lg font-bold text-black800">
               Specify your feeling
             </Text>
 
             <CheckBox
               fieldName="specificFeelingsOption"
-              // baseFieldName="feeling"
               baseFieldID={feeling.feelingName}
               values={feeling.specificFeeling}
               labels={feeling.specificFeeling?.map((mood) => mood.name)}
             />
           </View>
-        </>
+        </View>
       ) : null}
-    </View>
+    </>
   );
 };
 

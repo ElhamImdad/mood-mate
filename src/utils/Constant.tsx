@@ -1,7 +1,8 @@
-import { Dimensions } from "react-native"; 
+import { Dimensions, Platform } from "react-native"; 
 
 export const WIDTH = Dimensions.get('window').width
 export const HEIGHT = Dimensions.get('window').height
+export const platform = Platform.OS
 
 export const INSPIRATION = [
   {
@@ -32,7 +33,7 @@ export const MOOD_ENTRIES = [
     day: "01",
     month:"May",
     feelingName: "AWESOME",
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 1,
         name: 'Glad',
@@ -50,7 +51,7 @@ export const MOOD_ENTRIES = [
     day: "02",
     month:"May",
     feelingName: "AWESOME",
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 1,
         name: 'Glad',
@@ -68,7 +69,7 @@ export const MOOD_ENTRIES = [
     day: "03",
     month:"May",
     feelingName: "AWESOME",
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 1,
         name: 'Glad',
@@ -86,7 +87,7 @@ export const MOOD_ENTRIES = [
     day: "04",
     month:"May",
     feelingName: "AWESOME",
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 1,
         name: 'Glad',
@@ -104,7 +105,7 @@ export const MOOD_ENTRIES = [
     day: "05",
     month:"May",
     feelingName: "AWESOME",
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 1,
         name: 'Glad',
@@ -122,7 +123,7 @@ export const MOOD_ENTRIES = [
     day: "06",
     month:"May",
     feelingName: "AWESOME",
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 1,
         name: 'Glad',
@@ -142,26 +143,22 @@ export const FEELING = [
     id: 1,
     emoji: require('../../assets/images/awesome.png'),
     feelingName: 'awesome',
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 1,
         name: 'Exited',
-        selected: false,
       },
       {
         id: 2,
         name: 'Self-confidence',
-        selected: false,
       },
       {
         id: 3,
         name: 'Powerful',
-        selected: false,
       },
       {
         id: 4,
         name: 'Joyful',
-        selected: false,
       },
     ]
   },
@@ -169,31 +166,26 @@ export const FEELING = [
     id: 2,
     emoji: require('../../assets/images/good.png'),
     feelingName: 'good',
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 5,
         name: 'Glad',
-        selected: false,
       },
       {
         id: 6,
         name: 'Grateful',
-        selected: false,
       },
       {
         id: 7,
         name: 'Delighted',
-        selected: false,
       },
       {
         id: 8,
         name: 'Pleased',
-        selected: false,
       },
       {
         id: 9,
         name: 'Optimistic',
-        selected: false,
       }
     ]
   },
@@ -201,21 +193,18 @@ export const FEELING = [
     id: 3,
     emoji: require('../../assets/images/not_bad.png'),
     feelingName: 'not bad',
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 10,
         name: 'Glad',
-        selected: false,
       },
       {
         id: 11,
         name: 'Grateful',
-        selected: false,
       },
       {
         id: 12,
         name: 'Delighted',
-        selected: false,
       },
     ]
   },
@@ -223,31 +212,26 @@ export const FEELING = [
     id: 4,
     emoji: require('../../assets/images/bad.png'),
     feelingName: 'bad',
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 13,
         name: 'Upset',
-        selected: false,
       },
       {
         id: 14,
         name: 'Heavy',
-        selected: false,
       },
       {
         id: 15,
         name: 'Sorrowful',
-        selected: false,
       },
       {
         id: 16,
         name: 'Crushed',
-        selected: false,
       },
       {
         id: 17,
         name: 'Disgusted',
-        selected: false,
       }
     ]
   },
@@ -255,31 +239,26 @@ export const FEELING = [
     id: 5,
     emoji: require('../../assets/images/awful.png'),
     feelingName: 'awful',
-    SpecifyFeeling: [
+    specificFeeling: [
       {
         id: 18,
         name: 'Upset',
-        selected: false,
       },
       {
         id: 19,
         name: 'Heavy',
-        selected: false,
       },
       {
         id: 20,
         name: 'Sorrowful',
-        selected: false,
       },
       {
         id: 21,
         name: 'Crushed',
-        selected: false,
       },
       {
         id: 22,
         name: 'Disgusted',
-        selected: false,
       }
     ]
   },

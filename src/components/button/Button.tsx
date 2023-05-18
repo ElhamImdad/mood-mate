@@ -19,6 +19,8 @@ const Button1 = React.forwardRef(({ children, ...props }: any, ref: any) => {
     pl_title,
     mx,
     my,
+    mt,
+    mb,
     onPress,
   }: ButtonProps = props;
 
@@ -94,6 +96,8 @@ interface ButtonProps {
   pl_title?: number;
   mx?: number;
   my?: number;
+  mt?: number;
+  mb?: number;
   type?: "solid" | "clear" | "outline";
   radius?: "xs" | "sm" | "md" | "lg" | number;
   textColor?: "white" | "darkSky" | "gray";

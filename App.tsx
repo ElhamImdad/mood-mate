@@ -10,6 +10,7 @@ import {
   registerNotificationHandlers,
 } from "./src/services/notification/PushNotification";
 import { setNotificationHandler } from "expo-notifications";
+import { I18nManager } from 'react-native';
 
 setNotificationHandler({
   handleNotification: async () => ({
@@ -21,6 +22,8 @@ setNotificationHandler({
 
 export default function App() {
   useEffect(() => {
+    I18nManager.forceRTL(false);
+    I18nManager.allowRTL(false);
     registerForPushNotifications();
     scheduleNotifications();
     registerNotificationHandlers();

@@ -8,6 +8,10 @@ export interface SpecificFeelingModel {
     feelingName: string;
     specificFeeling: SpecificFeelingModel[];
   }
+  export interface FeelingContextProps {
+    activeEmogi: FeelingModel | null;
+    updateActiveEmogi: (data: FeelingModel) => void;
+  }
 
   export interface EntriesFeelingModel {
     id: number;

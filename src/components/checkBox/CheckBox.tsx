@@ -28,7 +28,6 @@ const CheckBox = React.forwardRef(({ ...props }: any, ref: any) => {
         helpers.setValue(
           field.value.filter((value, index) => index !== existingValueIndex)
         );
-        console.log("uncheck", field.value);
       }
     };
 

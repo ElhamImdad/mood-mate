@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { LineChart as Linechart  } from 'react-native-chart-kit';
-import  YAxis  from 'react-native-svg';
+import YAxis,{ LineChart as Linechart  } from 'react-native-chart-kit';
+// import  YAxis  from 'react-native-svg';
 import { WIDTH } from '../../utils/Constant'; 
 
 const LineChart = () => {
@@ -36,13 +36,13 @@ const LineChart = () => {
         data={yAxisData}
         yAccessor={({ index }) => index}
         contentInset={{ top: 20, bottom: 20 }}
+        formatLabel={(value, index) =>{}} // Format the y-axis label using the format function
         svg={{
           fontSize: 12,
           fill: 'black',
           alignmentBaseline: 'baseline',
           baselineShift: '3',
         }}
-        formatLabel={() => ''} // Empty formatLabel as we're using custom YAxisLabels component
       /> */}
       <Linechart
         data={{
@@ -80,6 +80,7 @@ const LineChart = () => {
         withInnerLines={false} // Disable default y-axis lines
         withOuterLines={false} // Disable default x-axis lines
         fromZero={minYValue > 0 ? false : true} // Adjust based on your data
+        segments = {1}
       />
 
       

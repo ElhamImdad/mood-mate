@@ -4,7 +4,7 @@ import Button from "../../../components/button/Button";
 import { Icon } from "../../../utils/Utils";
 import Modal from "../../../components/modal/Modal";
 import colors from "../../../utils/colors";
-import LogMoodDetails from "./LogMoodForm";
+import LogMoodForm from "./LogMoodForm";
 import { useAppSelector, useAppDispatch } from "../../../store/store"
 import { togleFeelinfForm } from "../../../store/features/feelings/feelingUtilsSlice";
 
@@ -13,7 +13,7 @@ const LogMood = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <View className="flex justify-end">
+    <View className="">
       <Modal
         visible={feelingFormVisible}
         onRequestClose={() => dispatch(togleFeelinfForm())}
@@ -21,8 +21,9 @@ const LogMood = () => {
         animationType="slide"
         transparent={false}
       >
-        <LogMoodDetails />
+        <LogMoodForm />
       </Modal>
+      <View>
       <Button
         type="solid"
         textColor="white"
@@ -34,6 +35,7 @@ const LogMood = () => {
         Log your mood
         <Icon name="plus" color={colors.white} />
       </Button>
+      </View>
     </View>
   );
 };
