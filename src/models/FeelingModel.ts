@@ -5,6 +5,7 @@ export interface SpecificFeelingModel {
   export interface FeelingModel {
     id: number;
     emoji: any;
+    feelingId?: number;
     feelingName: string;
     specificFeeling: SpecificFeelingModel[];
   }
