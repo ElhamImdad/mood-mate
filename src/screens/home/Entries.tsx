@@ -13,14 +13,17 @@ const Entries = () => {
   useEffect(() => {
     dispatch(fetchFeelings());
   }, []);
-  const repeatSkelton = Array(3).fill(0);
+  const repeatSkelton = Array.from({ length: 3 }, (_, index) => index + 1);
   return (
     <View className="flex-1">
       <Text className="text-black800 text-xl font-extrabold">May 2023</Text>
 
       {feelingsList.loading &&
-        repeatSkelton.map(() => (
-          <View className="flex flex-1 flex-col justify-center items-center">
+        repeatSkelton.map((idx) => (
+          <View
+            className="flex flex-1 flex-col justify-center items-center"
+            key={idx}
+          >
             <Skeleton
               animation="pulse"
               height={70}

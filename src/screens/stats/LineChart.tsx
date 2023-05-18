@@ -1,58 +1,54 @@
 import React from "react";
 import { View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
-import YAxis from "react-native-svg";
 import { WIDTH } from "../../utils/Constant";
 
 const feelingsData = [
-  { day: 1, feeling: "Not bad" },
-  { day: 5, feeling: "Good" },
-  { day: 10, feeling: "Not bad" },
-  { day: 13, feeling: "Awesome" },
+  { day: 1, feeling: "Not bad", value: 3 },
+  { day: 5, feeling: "Good", value: 4 },
+  { day: 3, feeling: "Not bad", value: 3 },
+  { day: 4, feeling: "Bad", value: 7 },
+  { day: 9, feeling: "Awesome", value: 5 },
   // Add more objects for each day
 ];
 
 const LineChartComponent: React.FC = () => {
   const daysInMonth = 10; // Replace with the actual number of days in the month
 
-  const xLabels = Array.from({ length: daysInMonth }, (_, index) =>
+  const days = Array.from({ length: daysInMonth }, (_, index) =>
     (index + 1).toString()
   );
-  const yData = Array.from({ length: daysInMonth }, (_, index) => {
-    const dataPoint = feelingsData.find((item) => item.day === index + 1);
-    return dataPoint ? dataPoint.feeling : "";
+
+  const feelings = ["Awful", "Bad", "Not bad", "Good", "Awesome", "Cry"];
+
+  const points = Array.from({ length: daysInMonth }, (i, _index) => {
+    const isItemExists = feelingsData.find((value) => value.day === _index + 1);
+
+    return isItemExists ? isItemExists.value : null;
   });
-  console.log("x label ==> ", xLabels);
 
-  console.log("y label ==> ", yData);
+  // console.log("x label ==> ", days);
 
-  function* yLabel() {
-    yield* ["Awesome", "Good", "Not bad", "Bad", "Awful"];
-  }
-  const customYAxisLabels = ["Awful", "Bad", "Not bad", "Good", "Awesome"];
-  
-  // const chartData = {
+  console.log("point ==> ", points);
+
+  // const chartData2 = {
   //   labels: xLabels,
-  //   datasets: [{ data: yData.map((_, index) => index + 1) }],
+  //   datasets: [
+  //     {
+  //       data: yData.map((feelingName, index) => {
+  //         if (feelingName !== "") {
+  //           customYAxisLabels.map((staticYLabel, idx) => {
+  //             if (feelingName === staticYLabel) {
+  //               console.log(staticYLabel, " ---- index ----", idx);
+  //               return idx + 1;
+  //             }
+  //           });
+  //         }else
+  //         return index + 1;
+  //       }),
+  //     },
+  //   ],
   // };
-  const chartData = {
-    labels: xLabels,
-    datasets: [
-      {
-        data: yData.map((feelingName, index) => {
-          if (feelingName !== "") {
-            customYAxisLabels.map((staticYLabel, idx) => {
-              if (feelingName === staticYLabel) {
-                console.log(staticYLabel, " ---- index ----", idx);
-                return idx + 1;
-              }
-            });
-          }
-          return index + 1;
-        }),
-      },
-    ],
-  };
   const chartConfig = {
     backgroundColor: "#ffffff",
     backgroundGradientFrom: "#ffffff",
@@ -64,7 +60,40 @@ const LineChartComponent: React.FC = () => {
     // propsForDots: { r: "6", strokeWidth: "2", stroke: "#ffa726" },
   };
 
-  const yLabels = customYAxisLabels.map((_, index) => index + 1);
+  const formatY = (value: string): string => {
+    console.log(" value", value);
+    return feelings[ Math.min(Number.parseInt(value)-1,feelings.length - 1)]
+  }
+  // Math.min(Number.parseInt(value)-1,feelings.length - 1)
+  const result = points.map((point, index) => {
+    if ( point != null) {
+      feelings.map((feeling, idx) => {
+        if (point == idx + 1) {
+          console.log(
+            "feeling idx >",
+            idx + 1,
+            " point > ",
+            point,
+            "feeling >>> ",
+            feeling
+          );
+
+          return idx + 1;
+        }
+      });
+    } else return null;
+  })
+  console.log("result ", result);
+  
+  const chartData = {
+    labels: days,
+    datasets: [
+      {
+        data: points
+      },
+    ],
+  };
+
   return (
     <View>
       <LineChart
@@ -74,15 +103,12 @@ const LineChartComponent: React.FC = () => {
         yAxisLabel=""
         chartConfig={chartConfig}
         bezier
-        style={{ marginVertical: 8, borderRadius: 16 }}
-        fromZero
+        style={{ marginVertical: 60}}
+       fromZero
+       
         yLabelsOffset={10}
         verticalLabelRotation={30}
-       
-        formatYLabel={(value) =>
-          customYAxisLabels[
-            Math.min(Number.parseInt(value), customYAxisLabels.length - 1)
-          ]
+        formatYLabel={(value) => formatY(value)
         }
       />
     </View>
