@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function LogMoodNavigation() {
+const Settings = () => {
   return (
     <View>
-      <Text>LogMoodNavigation</Text>
+      <Text>Settings</Text>
     </View>
   )
 }
+
+export default Settings

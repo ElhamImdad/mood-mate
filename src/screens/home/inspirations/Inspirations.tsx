@@ -6,7 +6,7 @@ import { INSPIRATION } from "../../../utils/Constant";
 import { ScrollView, TouchableOpacity } from "react-native";
 import Card from "../../../components/card/Card";
 
-const Inspirations = () => {
+const Inspirations = ({navigation}) => {
   const inspiration = INSPIRATION;
   return (
     <View>
@@ -22,7 +22,7 @@ const Inspirations = () => {
           : inspiration.map((inspirationItem, i) => (
               <TouchableOpacity
                 key={i}
-                onPress={() => alert(inspirationItem.title)}
+                onPress={()=>navigation.navigate(inspirationItem.title,{msg:"From Home Screen"})}
               >
                 <Card>
                   <Icon

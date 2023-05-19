@@ -8,7 +8,7 @@ const Home = ({ navigation }) => {
   
   return (
     <View className="pt-16 px-6 h-full">
-      <Inspirations />
+      <Inspirations navigation={navigation}/>
       <Entries />
       <LogMood/>
     </View>

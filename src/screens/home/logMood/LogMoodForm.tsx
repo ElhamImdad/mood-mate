@@ -8,22 +8,22 @@ import {
   Pressable,
 } from "react-native";
 import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import cn from "classnames";
 import Button from "../../../components/button/Button";
 import MoodSlider from "./moodSlider/MoodSlider";
 import Modal from "../../../components/modal/Modal";
 import Note from "./moodSlider/Note";
-import { useAppSelector } from "../../../store/store";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useAppDispatch } from "../../../store/store";
 import { togleFeelinfForm } from "../../../store/features/feelings/feelingUtilsSlice";
-import { platform, HEIGHT } from "../../../utils/Constant";
-import cn from "classnames";
+import { platform } from "../../../utils/Constant";
 import { Icon } from "../../../utils/Utils";
 import colors from "../../../utils/colors";
 interface FormValues {
-  feelingID: number;
-  specificFeelingsOption: number[];
+  feelingID: number; //id for the feeling (emogi)
+  specificFeelingsOption: number[]; // id for each specific feeling...
   note: string;
 }
 
@@ -37,6 +37,17 @@ const LogMoodForm: React.FC<{}> = () => {
 
   const nextFeelingHandler = (): void => {
     setNoteModalVisible(true);
+  };
+
+  const handleSubmitForm = async (values, actions) => {
+    dispatch(togleFeelinfForm());
+    actions.setSubmitting(false);
+    try {
+      await AsyncStorage.setItem("lastSelectedMood", JSON.stringify(values));
+      console.log("Form data saved successfully!", {values});
+    } catch (error) {
+      console.log("Error saving form data:", error);
+    }
   };
 
   const feelingsFormValidationSchema = Yup.object({
@@ -53,12 +64,7 @@ const LogMoodForm: React.FC<{}> = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={feelingsFormValidationSchema}
-      onSubmit={(values, actions) => {
-        dispatch(togleFeelinfForm());
-        console.log({ values });
-        // alert(JSON.stringify(values, null, 2));
-        actions.setSubmitting(false);
-      }}
+      onSubmit={handleSubmitForm}
     >
       {(formikProps) => (
         <View className="bg-white50 flex-1 py-5 px-5">
@@ -72,7 +78,10 @@ const LogMoodForm: React.FC<{}> = () => {
           </Pressable>
           <ScrollView
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{  justifyContent: "center", paddingVertical: 30 }}
+            contentContainerStyle={{
+              justifyContent: "center",
+              paddingVertical: 30,
+            }}
           >
             <View className={cn("  flex-1 flex flex-col justify-center")}>
               <View className="grow-0">

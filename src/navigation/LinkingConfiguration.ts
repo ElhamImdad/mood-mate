@@ -9,7 +9,7 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Root: {
         screens: {
-          Home: {
+          HomeNavigator: {
             screens: {
               TabOneScreen: 'home',
             },
@@ -19,9 +19,9 @@ const linking: LinkingOptions<RootStackParamList> = {
               TabTwoScreen: 'stats',
             },
           },
-          Calendar: {
+          Settings: {
             screens: {
-              TabThreeScreen: 'calendar',
+              TabThreeScreen: 'settings',
             },
           },
         },

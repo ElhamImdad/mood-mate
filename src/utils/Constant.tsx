@@ -7,22 +7,22 @@ export const platform = Platform.OS
 export const INSPIRATION = [
   {
     id: 1,
-    title: "musics",
+    title: "Music",
     iconName: "music",
   },
   {
     id: 2,
-    title: "videos",
+    title: "Videos",
     iconName: "play-circle-outline",
   },
   {
     id: 3,
-    title: "books",
+    title: "Books",
     iconName: "book-open-variant",
   },
   {
     id: 4,
-    title: "favorite",
+    title: "Favorite",
     iconName: "hand-heart-outline",
   },
 ];
