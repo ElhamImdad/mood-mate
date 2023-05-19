@@ -3,18 +3,18 @@ import { View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { WIDTH } from "../../utils/Constant";
 import colors from "../../utils/colors";
-import { FeelingModel } from "../../models/FeelingModel";
+import { FeelingModel, EntriesFeelingModel } from "../../models/FeelingModel";
 
-const feelingsData = [
-  { day: 1, feeling: "Not bad", value: 3 },
-  { day: 5, feeling: "Good", value: 4 },
-  { day: 3, feeling: "Not bad", value: 3 },
-  { day: 4, feeling: "Bad", value: 2 },
-  { day: 9, feeling: "Awesome", value: 5 },
-  // Add more objects for each day
-];
+// const feelingsData = [
+//   { day: 1, feeling: "Not bad", value: 3 },
+//   { day: 5, feeling: "Good", value: 4 },
+//   { day: 3, feeling: "Not bad", value: 3 },
+//   { day: 4, feeling: "Bad", value: 2 },
+//   { day: 9, feeling: "Awesome", value: 5 },
+//   // Add more objects for each day
+// ];
 
-const LineChartComponent = ({ feelings, daysInMonth }: { feelings: FeelingModel[], daysInMonth: number }) => {
+const LineChartComponent = ({ feelings, daysInMonth, feelingsData }: { feelings: FeelingModel[], daysInMonth: number, feelingsData: EntriesFeelingModel[] }) => {
   
   // const daysInMonth = 10;
   // console.log(data);
@@ -26,9 +26,9 @@ const LineChartComponent = ({ feelings, daysInMonth }: { feelings: FeelingModel[
   // const feelings = ["Awful", "Bad", "Not bad", "Good", "Awesome"];
 
   const points = Array.from({ length: daysInMonth }, (i, _index) => {
-    const isItemExists = feelingsData.find((value) => value.day === _index + 1);
+    const isItemExists = feelingsData.find((value) => Number.parseInt(value.day) === _index + 1);
 
-    return isItemExists ? isItemExists.value : null;
+    return isItemExists ? isItemExists.feelingId : null;
   });
 
   // const getColorForDataPoint = (

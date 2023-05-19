@@ -19,6 +19,7 @@ export interface SpecificFeelingModel {
     day: string;
     month: string;
     year: string;
+    feelingId?: number;
     feelingName: string;
     specificFeeling: SpecificFeelingModel[];
     note?: string;
