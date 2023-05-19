@@ -14,19 +14,58 @@ import { FeelingModel, EntriesFeelingModel } from "../../models/FeelingModel";
 //   // Add more objects for each day
 // ];
 
-const LineChartComponent = ({ feelings, daysInMonth, feelingsData }: { feelings: FeelingModel[], daysInMonth: number, feelingsData: EntriesFeelingModel[] }) => {
+const LineChartComponent = ({
+  feelings,
+  daysInMonth,
+  feelingsData,
+}: {
+  feelings: FeelingModel[];
+  daysInMonth: number;
+  feelingsData: EntriesFeelingModel[];
+}) => {
+  const daysInFeelingData = feelingsData.map((item) => {
+    return Number.parseInt(item.day);
+  });
+  const maxDay = Math.max(...daysInFeelingData);
+  const minDay = Math.min(...daysInFeelingData);
+  const numDays = maxDay - minDay;
   
-  // const daysInMonth = 10;
-  // console.log(data);
-  
-  const days = Array.from({ length: daysInMonth }, (_, index) =>
-    (index + 1).toString()
-  );
+  const days = (): string[] => {
+    if (numDays < 16)
+      return Array.from({ length: (maxDay - minDay) / 1 + 1 }, (_, i) =>
+        (minDay + i * 1).toString()
+      );
+    else if (numDays < 20)
+      return Array.from({ length: (maxDay - minDay) / 2 + 1 }, (_, i) =>
+        (minDay + i * 2).toString()
+      );
+    else
+      return Array.from({ length: (daysInMonth - 1) / 3 + 1 }, (_, i) =>
+        (1 + i * 3).toString()
+      );
+  };
 
+  // const days = Array.from({ length: daysInMonth }, (_, index) =>
+  //   (index + 1).toString()
+  // );
+
+  const hideXlabelIndex = (): number[] => {
+    if (numDays < 11) {
+      return [];
+    } else if (numDays < 20) {
+      return Array.from(
+        { length: (daysInMonth - 1) / 2 + 1 },
+        (_, i) => 1 + i * 2
+      );
+    }else 
+    return [1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31]
+  };
   // const feelings = ["Awful", "Bad", "Not bad", "Good", "Awesome"];
 
-  const points = Array.from({ length: daysInMonth }, (i, _index) => {
-    const isItemExists = feelingsData.find((value) => Number.parseInt(value.day) === _index + 1);
+  const points = Array.from({ length: days().length }, (i, _index) => {
+    const isItemExists = feelingsData.find(
+      (value) => Number.parseInt(value.day) === _index + 1
+    );
 
     return isItemExists ? isItemExists.feelingId : null;
   });
@@ -72,11 +111,13 @@ const LineChartComponent = ({ feelings, daysInMonth, feelingsData }: { feelings:
 
   const formatY = (value: string): string => {
     if (value === "0") return "";
-    return feelings[Math.min(Number.parseInt(value) - 1, feelings.length - 1)].feelingName.toUpperCase();
+    return feelings[
+      Math.min(Number.parseInt(value) - 1, feelings.length - 1)
+    ].feelingName.toUpperCase();
   };
 
   const chartData = {
-    labels: days,
+    labels: days(),
     datasets: [
       {
         data: points,
@@ -99,6 +140,7 @@ const LineChartComponent = ({ feelings, daysInMonth, feelingsData }: { feelings:
         fromZero
         yLabelsOffset={6}
         formatYLabel={(value) => formatY(value)}
+        hidePointsAtIndex={hideXlabelIndex()}
         // getDotColor={(dataPoint, dataPointIndex) => getColorForDataPoint(dataPoint, dataPointIndex)}
       />
     </View>

@@ -38,19 +38,18 @@ const Stats = () => {
 
       {!feelingsData.loading && feelingsData.feelingsList.length ? (
         <ScrollView showsVerticalScrollIndicator={false}>
-        <Card space="relative my-4 mx-3">
-        <Text className="text-black800 text-xl font-extrabold pb-2">
-          Mood Chart
-        </Text>
-        <LineChart
-          feelings={feelings}
-          daysInMonth={10}
-          feelingsData={feelingsDataInMonth}
-        />
-      </Card>
-      </ScrollView>
+          <Card space="relative my-4 mx-3">
+            <Text className="text-black800 text-xl font-extrabold pb-2">
+              Mood Chart
+            </Text>
+            <LineChart
+              feelings={feelings}
+              daysInMonth={daysInMonth}
+              feelingsData={feelingsDataInMonth}
+            />
+          </Card>
+        </ScrollView>
       ) : null}
-      
     </>
   );
 };
