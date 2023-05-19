@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from "../../store/store";
 import { Skeleton } from "@rneui/themed";
 import { fetchFeelings } from "../../store/features/feelings/feelingSlice";
 import colors from "../../utils/colors";
+import ErrorState from "../../components/error-state/ErrorState";
 
 const Entries = () => {
   const feelingsList = useAppSelector((state) => state.fetchfeelings);
@@ -32,18 +33,8 @@ const Entries = () => {
           </View>
         ))}
       {!feelingsList.loading && feelingsList.error ? (
-        <View className="flex flex-1 flex-col justify-center items-center space-y-5">
-          <Image
-            className="h-28 w-28"
-            source={require("../../../assets/images/error.png")}
-            resizeMode="contain"
-          />
-          <Text className="text-error text-base">
-            Error: {feelingsList.error}
-          </Text>
-        </View>
+        <ErrorState label={feelingsList.error}/>
       ) : null}
-
       {!feelingsList.loading && feelingsList.feelingsList.length ? (
         <ScrollView className="mt-5" showsVerticalScrollIndicator={false}>
           {feelingsList.feelingsList.map((item, i) => (

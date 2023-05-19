@@ -67,12 +67,12 @@ const LineChartComponent = ({ feelings, daysInMonth, feelingsData }: { feelings:
     style: { borderRadius: 16 },
     propsForBackgroundLines: { stroke: colors.gray200 },
     useShadowColorFromDataset: false,
-    propsForLabels: { fontSize: 12, fontWeight: 400 },
+    propsForLabels: { fontSize: 11, fontWeight: 700 },
   };
 
   const formatY = (value: string): string => {
     if (value === "0") return "";
-    return feelings[Math.min(Number.parseInt(value) - 1, feelings.length - 1)].feelingName;
+    return feelings[Math.min(Number.parseInt(value) - 1, feelings.length - 1)].feelingName.toUpperCase();
   };
 
   const chartData = {
@@ -96,8 +96,8 @@ const LineChartComponent = ({ feelings, daysInMonth, feelingsData }: { feelings:
         chartConfig={chartConfig}
         segments={5}
         style={{ marginVertical: 8 }}
-        // fromZero
-        yLabelsOffset={10}
+        fromZero
+        yLabelsOffset={6}
         formatYLabel={(value) => formatY(value)}
         // getDotColor={(dataPoint, dataPointIndex) => getColorForDataPoint(dataPoint, dataPointIndex)}
       />
