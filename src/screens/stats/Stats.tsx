@@ -1,5 +1,5 @@
 import { Text, ScrollView, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import Card from "../../components/card/Card";
 import { getDaysInMonth } from "../../utils/Utils";
 import { useAppSelector } from "../../store/store";
@@ -8,10 +8,12 @@ import { FEELING } from "../../utils/Constant";
 import { EntriesFeelingModel } from "../../models/FeelingModel";
 import ErrorState from "../../components/error-state/ErrorState";
 import Loader from "../../components/loader/Loader";
+import LastSelectedColorContext from "../../context/color-context/ColorContext";
 
 const Stats = () => {
   const feelings = FEELING;
   const feelingsData = useAppSelector((state) => state.fetchfeelings);
+  const { colorVal, updateColorData } = useContext(LastSelectedColorContext);
 
   // The default chart should display for the current month and year...
   const currentDate = new Date();
@@ -27,7 +29,7 @@ const Stats = () => {
     });
 
   return (
-    <>
+    <View className="flex-1" style={{backgroundColor: colorVal}}>
       {!feelingsData.loading && feelingsData.error ? (
         <ErrorState label={feelingsData.error} />
       ) : null}
@@ -57,7 +59,7 @@ const Stats = () => {
           </Card>
         </ScrollView>
       ) : null}
-    </>
+    </View>
   );
 };
 
