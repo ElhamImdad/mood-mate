@@ -8,7 +8,7 @@ import colors from "../../utils/colors";
 
 export const CardDetails = ({ data }: { data: EntriesFeelingModel }) => {
   const getEmogi = () => {
-    const feelingEmogi = FEELING?.find((item) => item.id == data.id);
+    const feelingEmogi = FEELING?.find((item) => item.id == data.feelingId);
     return feelingEmogi.emoji;
   };
   return (

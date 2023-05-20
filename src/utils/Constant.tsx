@@ -141,75 +141,33 @@ export const MOOD_ENTRIES = [
 export const FEELING = [
   {
     id: 1,
-    emoji: require('../../assets/images/awesome.png'),
-    feelingName: 'awesome',
+    emoji: require('../../assets/images/awful.png'),
+    feelingName: 'awful',
     specificFeeling: [
       {
-        id: 1,
-        name: 'Exited',
+        id: 18,
+        name: 'Upset',
       },
       {
-        id: 2,
-        name: 'Self-confidence',
+        id: 19,
+        name: 'Heavy',
       },
       {
-        id: 3,
-        name: 'Powerful',
+        id: 20,
+        name: 'Sorrowful',
       },
       {
-        id: 4,
-        name: 'Joyful',
-      },
-    ]
-  },
-  {
-    id: 2,
-    emoji: require('../../assets/images/good.png'),
-    feelingName: 'good',
-    specificFeeling: [
-      {
-        id: 5,
-        name: 'Glad',
+        id: 21,
+        name: 'Crushed',
       },
       {
-        id: 6,
-        name: 'Grateful',
-      },
-      {
-        id: 7,
-        name: 'Delighted',
-      },
-      {
-        id: 8,
-        name: 'Pleased',
-      },
-      {
-        id: 9,
-        name: 'Optimistic',
+        id: 22,
+        name: 'Disgusted',
       }
     ]
   },
   {
-    id: 3,
-    emoji: require('../../assets/images/not_bad.png'),
-    feelingName: 'not bad',
-    specificFeeling: [
-      {
-        id: 10,
-        name: 'Glad',
-      },
-      {
-        id: 11,
-        name: 'Grateful',
-      },
-      {
-        id: 12,
-        name: 'Delighted',
-      },
-    ]
-  },
-  {
-    id: 4,
+    id: 2,
     emoji: require('../../assets/images/bad.png'),
     feelingName: 'bad',
     specificFeeling: [
@@ -236,30 +194,73 @@ export const FEELING = [
     ]
   },
   {
-    id: 5,
-    emoji: require('../../assets/images/awful.png'),
-    feelingName: 'awful',
+    id: 3,
+    emoji: require('../../assets/images/not_bad.png'),
+    feelingName: 'not bad',
     specificFeeling: [
       {
-        id: 18,
-        name: 'Upset',
+        id: 10,
+        name: 'Glad',
       },
       {
-        id: 19,
-        name: 'Heavy',
+        id: 11,
+        name: 'Grateful',
       },
       {
-        id: 20,
-        name: 'Sorrowful',
+        id: 12,
+        name: 'Delighted',
+      },
+    ]
+  },
+  {
+    id: 4,
+    emoji: require('../../assets/images/good.png'),
+    feelingName: 'good',
+    specificFeeling: [
+      {
+        id: 5,
+        name: 'Glad',
       },
       {
-        id: 21,
-        name: 'Crushed',
+        id: 6,
+        name: 'Grateful',
       },
       {
-        id: 22,
-        name: 'Disgusted',
+        id: 7,
+        name: 'Delighted',
+      },
+      {
+        id: 8,
+        name: 'Pleased',
+      },
+      {
+        id: 9,
+        name: 'Optimistic',
       }
     ]
   },
+  {
+    id: 5,
+    emoji: require('../../assets/images/awesome.png'),
+    feelingName: 'awesome',
+    specificFeeling: [
+      {
+        id: 1,
+        name: 'Exited',
+      },
+      {
+        id: 2,
+        name: 'Self-confidence',
+      },
+      {
+        id: 3,
+        name: 'Powerful',
+      },
+      {
+        id: 4,
+        name: 'Joyful',
+      },
+    ]
+  }
 ];
+

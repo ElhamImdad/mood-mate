@@ -62,13 +62,24 @@ const LineChartComponent = ({
   };
   // const feelings = ["Awful", "Bad", "Not bad", "Good", "Awesome"];
 
-  const points = Array.from({ length: days().length }, (i, _index) => {
+  // const points = Array.from({ length: days().length }, (i, _index) => {
+  //   const isItemExists = feelingsData.find(
+  //     (value) => {Number.parseInt(value.day) === _index +1}
+  //   );
+  //   return isItemExists ? isItemExists.feelingId : null;
+  // });
+  console.log("days ->>>>> ", days());
+  
+  const points = days().map((dayStr, _index) => {
     const isItemExists = feelingsData.find(
-      (value) => Number.parseInt(value.day) === _index + 1
+      (value) => (Number.parseInt(value.day)) === (Number.parseInt(dayStr)) 
     );
-
+    
     return isItemExists ? isItemExists.feelingId : null;
+    
+    
   });
+  console.log("points -----------> ",points);
 
   // const getColorForDataPoint = (
   //   dataPointValue: number,
@@ -110,11 +121,20 @@ const LineChartComponent = ({
   };
 
   const formatY = (value: string): string => {
+    console.log("value -> ", value);
+    
     if (value === "0") return "";
     return feelings[
-      Math.min(Number.parseInt(value) - 1, feelings.length - 1)
+      Math.min(Number.parseInt(value)-1 , feelings.length - 1)
     ].feelingName.toUpperCase();
   };
+
+  // const formatY = (value: string): string => {
+  //   console.log("value -> ", value);
+  //   let feelingObg = feelings.find((feeling) => feeling.feelingId+1 === (Number.parseInt(value)))
+  //   if (value === "0") return "";
+  //   return feelingObg.feelingName
+  // };
 
   const chartData = {
     labels: days(),
@@ -137,8 +157,8 @@ const LineChartComponent = ({
         chartConfig={chartConfig}
         segments={5}
         style={{ marginVertical: 8 }}
-        fromZero
-        yLabelsOffset={6}
+        // fromZero
+        yLabelsOffset={1}
         formatYLabel={(value) => formatY(value)}
         hidePointsAtIndex={hideXlabelIndex()}
         // getDotColor={(dataPoint, dataPointIndex) => getColorForDataPoint(dataPoint, dataPointIndex)}
