@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React, { useEffect } from "react";
 import CardDetails from "../../components/card/CardDetails";
 import { useAppSelector, useAppDispatch } from "../../store/store";
@@ -9,13 +9,12 @@ import Loader from "../../components/loader/Loader";
 
 const Entries = () => {
   const feelingsList = useAppSelector((state) => state.fetchfeelings);
-  
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchFeelings());
   }, []);
-  
+
   return (
     <View className="flex-1">
       {feelingsList.loading && <Loader />}

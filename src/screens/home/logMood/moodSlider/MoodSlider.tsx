@@ -1,8 +1,4 @@
-import {
-  View,
-  Text,
-  FlatList,
-} from "react-native";
+import { View, Text, FlatList } from "react-native";
 import React, { useRef, useState, useEffect } from "react";
 import { FEELING } from "../../../../utils/Constant";
 import MoodSlideItem from "./MoodSlideItem";
@@ -42,7 +38,6 @@ const MoodSlider = ({ formikProps }) => {
     setIndexIconVisible(Math.round(viewableItems[0]?.index));
   }).current;
 
-  //The percentage of the data shown on the screen at slide...
   const viewabilityConfig = useRef({
     itemVisiblePercentThreshold: 50,
   }).current;

@@ -5,15 +5,6 @@ import { WIDTH } from "../../utils/Constant";
 import colors from "../../utils/colors";
 import { FeelingModel, EntriesFeelingModel } from "../../models/FeelingModel";
 
-// const feelingsData = [
-//   { day: 1, feeling: "Not bad", value: 3 },
-//   { day: 5, feeling: "Good", value: 4 },
-//   { day: 3, feeling: "Not bad", value: 3 },
-//   { day: 4, feeling: "Bad", value: 2 },
-//   { day: 9, feeling: "Awesome", value: 5 },
-//   // Add more objects for each day
-// ];
-
 const LineChartComponent = ({
   feelings,
   daysInMonth,
@@ -29,7 +20,7 @@ const LineChartComponent = ({
   const maxDay = Math.max(...daysInFeelingData);
   const minDay = Math.min(...daysInFeelingData);
   const numDays = maxDay - minDay;
-  
+
   const days = (): string[] => {
     if (numDays < 16)
       return Array.from({ length: (maxDay - minDay) / 1 + 1 }, (_, i) =>
@@ -45,10 +36,6 @@ const LineChartComponent = ({
       );
   };
 
-  // const days = Array.from({ length: daysInMonth }, (_, index) =>
-  //   (index + 1).toString()
-  // );
-
   const hideXlabelIndex = (): number[] => {
     if (numDays < 11) {
       return [];
@@ -57,21 +44,16 @@ const LineChartComponent = ({
         { length: (daysInMonth - 1) / 2 + 1 },
         (_, i) => 1 + i * 2
       );
-    }else 
-    return [1,2,4,5,7,8,10,11,13,14,16,17,19,20,22,23,25,26,28,29,31]
+    } else
+      return [
+        1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23, 25, 26, 28,
+        29, 31,
+      ];
   };
-  // const feelings = ["Awful", "Bad", "Not bad", "Good", "Awesome"];
 
-  // const points = Array.from({ length: days().length }, (i, _index) => {
-  //   const isItemExists = feelingsData.find(
-  //     (value) => {Number.parseInt(value.day) === _index +1}
-  //   );
-  //   return isItemExists ? isItemExists.feelingId : null;
-  // });
-  
   const points = days().map((dayStr, _index) => {
     const isItemExists = feelingsData.find(
-      (value) => (Number.parseInt(value.day)) === (Number.parseInt(dayStr)) 
+      (value) => Number.parseInt(value.day) === Number.parseInt(dayStr)
     );
     return isItemExists ? isItemExists.feelingId : null;
   });
@@ -107,7 +89,7 @@ const LineChartComponent = ({
     fillShadowGradientTo: colors.white,
     fillShadowGradient: colors.white,
     fillShadowGradientOpacity: 0,
-    color: (opacity = 1) => colors.darkSky, //`rgba(76, 159, 193, ${opacity})`
+    color: (opacity = 1) => colors.darkSky,
     labelColor: (opacity = 1) => colors.gray400,
     style: { borderRadius: 16 },
     propsForBackgroundLines: { stroke: colors.gray200 },
@@ -118,16 +100,9 @@ const LineChartComponent = ({
   const formatY = (value: string): string => {
     if (value === "0") return "";
     return feelings[
-      Math.min(Number.parseInt(value)-1 , feelings.length - 1)
+      Math.min(Number.parseInt(value) - 1, feelings.length - 1)
     ].feelingName.toUpperCase();
   };
-
-  // const formatY = (value: string): string => {
-  //   console.log("value -> ", value);
-  //   let feelingObg = feelings.find((feeling) => feeling.feelingId+1 === (Number.parseInt(value)))
-  //   if (value === "0") return "";
-  //   return feelingObg.feelingName
-  // };
 
   const chartData = {
     labels: days(),

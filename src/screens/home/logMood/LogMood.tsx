@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import Button from "../../../components/button/Button";
 import { Icon } from "../../../utils/Utils";
 import Modal from "../../../components/modal/Modal";

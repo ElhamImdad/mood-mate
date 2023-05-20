@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from 'react';
-import { Platform } from "react-native";
+import React from 'react';
+import { platform } from '../../utils/Constant';
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
 
@@ -50,7 +50,7 @@ export const scheduleNotifications = () => {
 export const registerForPushNotifications = async () => {
   let token;
 
-  if (Platform.OS === "android") {
+  if (platform === "android") {
     await Notifications.setNotificationChannelAsync("default", {
       name: "default",
       importance: Notifications.AndroidImportance.MAX,

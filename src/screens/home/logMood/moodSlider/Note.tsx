@@ -2,7 +2,6 @@ import { View, Text, Pressable, ScrollView } from "react-native";
 import React from "react";
 import Button from "../../../../components/button/Button";
 import Input from "../../../../components/input/Input";
-import { FormikProps } from "formik";
 
 const Note = React.forwardRef(({ children, ...props }: any, ref: any) => {
   let { submitForm, toggleClose, formikProps }: NoteModalInterface = props;

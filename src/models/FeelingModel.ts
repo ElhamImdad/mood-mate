@@ -26,13 +26,7 @@ export interface FeelingContextProps {
   activeEmogi: FeelingModel | null;
   updateActiveEmogi: (data: FeelingModel) => void;
 }
-
-// export interface FeelngsPerMonthContextProps {
-//   feelngsPerMonth: { [key: string]: EntriesFeelingModel[] }  | null;
-//   updatefeelngsPerMonth: (data: EntriesFeelingModel) => void
-// }
-
 export interface FeelngsPerMonthContextProps {
   feelngsPerMonth: EntriesFeelingModel[] | null;
-  updatefeelngsPerMonth: (data: EntriesFeelingModel[]) => void
+  updatefeelngsPerMonth: (data: EntriesFeelingModel[]) => void;
 }

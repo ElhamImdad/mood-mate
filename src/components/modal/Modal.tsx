@@ -1,4 +1,4 @@
-import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import { Modal, View } from "react-native";
 import React from "react";
 
 const Modal_ = React.forwardRef(({ children, ...props }: any, ref: any) => {

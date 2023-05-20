@@ -1,9 +1,6 @@
 import React from "react";
-import cn from "classnames";
-import { View, TouchableHighlight, Text } from "react-native";
 import { Button } from "@rneui/themed";
 import colors from "../../utils/colors";
-import { Type } from "typescript";
 
 const Button1 = React.forwardRef(({ children, ...props }: any, ref: any) => {
   let {

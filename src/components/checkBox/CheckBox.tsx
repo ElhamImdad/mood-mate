@@ -1,7 +1,5 @@
 import { View, Text, ScrollView, Pressable } from "react-native";
 import React from "react";
-import { Type } from "typescript";
-import { CheckBox as CustomCheckbox, Icon } from "@rneui/themed";
 import { useField } from "formik";
 import { SpecificFeelingModel } from "../../models/FeelingModel";
 import cn from "classnames";

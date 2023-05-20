@@ -1,7 +1,7 @@
 import { Text, ScrollView, View } from "react-native";
 import React from "react";
 import Card from "../../components/card/Card";
-import { getDaysInMonth, filterMonthAndYear } from "../../utils/Utils";
+import { getDaysInMonth } from "../../utils/Utils";
 import { useAppSelector } from "../../store/store";
 import LineChart from "./LineChart";
 import { FEELING } from "../../utils/Constant";
@@ -13,29 +13,26 @@ const Stats = () => {
   const feelings = FEELING;
   const feelingsData = useAppSelector((state) => state.fetchfeelings);
 
-  const filterYear = 2023;
-  const filterMonth = 5;
-  // const feelingsDataInMonth = filterMonthAndYear(
-  //   feelingsData.feelingsList,
-  //   filterMonth,
-  //   filterYear
-  // );
+  // The default chart should display for the current month and year...
+  const currentDate = new Date();
+  let currentMonth = currentDate.getMonth() + 1;
+  let currentYear = currentDate.getFullYear();
+  const daysInMonth = getDaysInMonth(2023, 5);
+
   const feelingsDataInMonth: EntriesFeelingModel[] =
     feelingsData.feelingsList.filter((item) => {
       return (
-        Number.parseInt(item.month) === filterMonth &&
-        Number.parseInt(item.year) === filterYear
+        Number.parseInt(item.month) === 5 && Number.parseInt(item.year) === 2023
       );
     });
-
-  const daysInMonth = getDaysInMonth(filterYear, filterMonth);
 
   return (
     <>
       {!feelingsData.loading && feelingsData.error ? (
         <ErrorState label={feelingsData.error} />
       ) : null}
-      {feelingsData.loading && <Loader/>}
+
+      {feelingsData.loading && <Loader />}
 
       {!feelingsData.loading && feelingsData.feelingsList.length ? (
         <ScrollView showsVerticalScrollIndicator={false}>

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import cn from "classnames";
-import { View, Text, TextInput } from "react-native";
+import { Text, TextInput } from "react-native";
 import { useField } from 'formik';
 import { Type } from "typescript";
 

@@ -44,7 +44,7 @@ const LogMoodForm: React.FC<{}> = () => {
     actions.setSubmitting(false);
     try {
       await AsyncStorage.setItem("lastSelectedMood", JSON.stringify(values));
-      console.log("Form data saved successfully!", {values});
+      console.log("Form data saved successfully!", { values });
     } catch (error) {
       console.log("Error saving form data:", error);
     }

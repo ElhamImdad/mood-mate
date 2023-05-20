@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FeelingModel, SpecificFeelingModel } from "../../../models/FeelingModel";
+import { FeelingModel } from "../../../models/FeelingModel";
 
 interface FeelingState {
   isFeelingFormVisible: boolean;

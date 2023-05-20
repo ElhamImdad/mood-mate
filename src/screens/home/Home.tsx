@@ -1,5 +1,5 @@
-import { View, Text } from "react-native";
-import React, { useState } from "react";
+import { View } from "react-native";
+import React from "react";
 import Inspirations from "./inspirations/Inspirations";
 import Entries from "./Entries";
 import LogMood from "./logMood/LogMood";
