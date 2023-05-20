@@ -1,9 +1,10 @@
 import React, { createContext } from "react";
-import { FeelingModel, FeelingContextProps } from "../../models/FeelingModel";
+import { FeelingContextProps, FeelngsPerMonthContextProps } from "../../models/FeelingModel";
 
-
-
-export const FeelingfContext = createContext<FeelingContextProps | null>(
+export const ActiveFeelingContext = createContext<FeelingContextProps | null>(
   null
 );
 
+export const FeelngsPerMonthContext = createContext<FeelngsPerMonthContextProps>(
+  {} as FeelngsPerMonthContextProps
+);

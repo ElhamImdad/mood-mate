@@ -15,7 +15,7 @@ export const CardDetails = ({ data }: { data: EntriesFeelingModel }) => {
     <>
       <ListItem
         pad={12}
-        containerStyle={{ borderRadius: 20, marginBottom: 20, backgroundColor: colors.white}}
+        containerStyle={{ borderRadius: 20, marginBottom: 12, backgroundColor: colors.white}}
       >
         <View className="flex items-center justify-between flex-row">
           <View className="flex items-center justify-center space-y-2">

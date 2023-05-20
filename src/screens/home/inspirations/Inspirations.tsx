@@ -15,7 +15,7 @@ const Inspirations = ({navigation}) => {
       <ScrollView
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        className="my-5 flex flex-nowrap flex-row space-x-4"
+        className="mt-5 flex flex-nowrap flex-row space-x-4"
       >
         {inspiration.length === 0
           ? null

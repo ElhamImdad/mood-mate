@@ -68,18 +68,13 @@ const LineChartComponent = ({
   //   );
   //   return isItemExists ? isItemExists.feelingId : null;
   // });
-  console.log("days ->>>>> ", days());
   
   const points = days().map((dayStr, _index) => {
     const isItemExists = feelingsData.find(
       (value) => (Number.parseInt(value.day)) === (Number.parseInt(dayStr)) 
     );
-    
     return isItemExists ? isItemExists.feelingId : null;
-    
-    
   });
-  console.log("points -----------> ",points);
 
   // const getColorForDataPoint = (
   //   dataPointValue: number,
@@ -121,8 +116,6 @@ const LineChartComponent = ({
   };
 
   const formatY = (value: string): string => {
-    console.log("value -> ", value);
-    
     if (value === "0") return "";
     return feelings[
       Math.min(Number.parseInt(value)-1 , feelings.length - 1)

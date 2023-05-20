@@ -14,12 +14,9 @@ const Entries = () => {
   useEffect(() => {
     dispatch(fetchFeelings());
   }, []);
-  
 
   return (
     <View className="flex-1">
-      <Text className="text-black800 text-xl font-extrabold">May 2023</Text>
-
       {feelingsList.loading && <Loader />}
       {!feelingsList.loading && feelingsList.error ? (
         <ErrorState label={feelingsList.error} />
@@ -27,9 +24,23 @@ const Entries = () => {
       {!feelingsList.loading ? (
         feelingsList.feelingsList.length ? (
           <ScrollView className="mt-5" showsVerticalScrollIndicator={false}>
-            {feelingsList.feelingsList.map((item, i) => (
-              <CardDetails data={item} key={i} />
-            ))}
+            {Object.keys(feelingsList.feelingsPerMonth).map((monthKey) => {
+              const dataForMonth = feelingsList.feelingsPerMonth[monthKey];
+              const [year, month] = monthKey.split("-");
+              const monthName = new Date(
+                parseInt(year),
+                parseInt(month)
+              ).toLocaleString("default", { month: "short" });
+
+              return (
+                <View key={`@${month}-${year}`}>
+                  <Text className="text-black800 text-xl font-extrabold pb-3 pt-5">{`${monthName} ${year}`}</Text>
+                  {dataForMonth.map((feelingObj, idx) => (
+                    <CardDetails data={feelingObj} key={`${month}-${idx}`} />
+                  ))}
+                </View>
+              );
+            })}
           </ScrollView>
         ) : (
           <EmptyState label={"Let's add the first entry!"} />
@@ -40,3 +51,13 @@ const Entries = () => {
 };
 
 export default Entries;
+
+{
+  /* <ScrollView className="mt-5" showsVerticalScrollIndicator={false}>
+            {
+              feelingsList.feelingsList.map((item, i) => (
+                <CardDetails data={item} key={i} />
+              ))
+            }
+          </ScrollView> */
+}
