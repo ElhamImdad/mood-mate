@@ -11,8 +11,9 @@ import colors from "../../utils/colors";
 const Home = ({ navigation }) => {
   const { colorVal, updateColorData } = useContext(LastSelectedColorContext);
   const coloresList = useAppSelector((state) => state.fetchColors.colorsVal);
-  let lastSelectedFeelingId = retrieveLastSelectedMoodData();
+  
   useEffect(() => {
+    let lastSelectedFeelingId = retrieveLastSelectedMoodData();
     lastSelectedFeelingId.then((feeling_id) => {
       const colorForLAstSelected = coloresList.filter((colorValue, idx) => {
         if (idx + 1 === Number.parseInt(feeling_id)) return colorValue;

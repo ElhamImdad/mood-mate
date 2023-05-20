@@ -58,26 +58,6 @@ const LineChartComponent = ({
     return isItemExists ? isItemExists.feelingId : null;
   });
 
-  // const getColorForDataPoint = (
-  //   dataPointValue: number,
-  //   dataPointIndex: number
-  // ): string => {
-  //   console.log("dataPoint ---->", dataPointValue);
-  //   console.log("dataPointIndex --->", dataPointIndex);
-  //   const dataPoint = feelingsData[dataPointIndex];
-  //   if (dataPoint) {
-  //     // Customize the color based on the feeling or any other condition
-  //     if (dataPoint.feeling === "Awesome") {
-  //       return "#00ff00"; // Green color for Happy
-  //     } else if (dataPoint.feeling === "Not bad") {
-  //       return "#0000ff"; // Blue color for Sad
-  //     } else if (dataPoint.feeling === "Good") {
-  //       return "#ff0000"; // Red color for Angry
-  //     }
-  //   }
-  //   return "#8B008B"; // Default color
-  // };
-
   const chartConfig = {
     backgroundColor: colors.white,
     backgroundGradientFrom: colors.white,
@@ -125,11 +105,9 @@ const LineChartComponent = ({
         chartConfig={chartConfig}
         segments={5}
         style={{ marginVertical: 8 }}
-        // fromZero
-        yLabelsOffset={1}
+        yLabelsOffset={6}
         formatYLabel={(value) => formatY(value)}
         hidePointsAtIndex={hideXlabelIndex()}
-        // getDotColor={(dataPoint, dataPointIndex) => getColorForDataPoint(dataPoint, dataPointIndex)}
       />
     </View>
   );
