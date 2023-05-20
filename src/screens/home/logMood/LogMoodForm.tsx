@@ -25,12 +25,13 @@ interface FormValues {
   feelingID: number; //id for the feeling (emogi)
   specificFeelingsOption: number[]; // id for each specific feeling...
   note: string;
+  currentDateTime: string;
 }
 
 const LogMoodForm: React.FC<{}> = () => {
   const [noteModalVisible, setNoteModalVisible] = useState(false);
   const dispatch = useAppDispatch();
-
+  
   const toggleNoteModal = (): void => {
     setNoteModalVisible(!noteModalVisible);
   };
@@ -59,6 +60,7 @@ const LogMoodForm: React.FC<{}> = () => {
     feelingID: -1,
     specificFeelingsOption: [],
     note: "",
+    currentDateTime: "",
   };
   return (
     <Formik

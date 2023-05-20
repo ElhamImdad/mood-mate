@@ -15,8 +15,8 @@ const MoodSlider = ({ formikProps }) => {
   const feelingBase = FEELING;
   const dispatch = useAppDispatch();
   const feeling = useAppSelector((state) => state.feelingUtils.feeling);
-
   const [indexIconVisible, setIndexIconVisible] = useState(0);
+  const currentDateTime = new Date().toJSON();
 
   //To specify the visible element...
   const handleOnViewableItemsChanged = useRef(({ viewableItems }) => {
@@ -34,7 +34,7 @@ const MoodSlider = ({ formikProps }) => {
 
     dispatch(setActiveFeeling(feelingItem));
     formikProps.setFieldValue("feelingID", id);
-
+    formikProps.setFieldValue("currentDateTime", currentDateTime);
     setIndexIconVisible(Math.round(viewableItems[0]?.index));
   }).current;
 
