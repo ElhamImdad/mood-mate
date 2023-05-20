@@ -9,12 +9,13 @@ import Loader from "../../components/loader/Loader";
 
 const Entries = () => {
   const feelingsList = useAppSelector((state) => state.fetchfeelings);
+  
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchFeelings());
   }, []);
-
+  
   return (
     <View className="flex-1">
       {feelingsList.loading && <Loader />}
@@ -51,13 +52,3 @@ const Entries = () => {
 };
 
 export default Entries;
-
-{
-  /* <ScrollView className="mt-5" showsVerticalScrollIndicator={false}>
-            {
-              feelingsList.feelingsList.map((item, i) => (
-                <CardDetails data={item} key={i} />
-              ))
-            }
-          </ScrollView> */
-}
