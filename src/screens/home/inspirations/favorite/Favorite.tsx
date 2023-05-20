@@ -1,11 +1,9 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import EmptyState from '../../../../components/empty-state/EmptyState'
 
 const Favorite = () => {
   return (
-    <View>
-      <Text>Favorite</Text>
-    </View>
+    <EmptyState label={"No Data found"}/>
   )
 }
 

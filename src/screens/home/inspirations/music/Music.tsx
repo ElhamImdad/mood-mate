@@ -1,11 +1,9 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import EmptyState from '../../../../components/empty-state/EmptyState'
 
 const Music = () => {
   return (
-    <View>
-      <Text>Music Screen</Text>
-    </View>
+    <EmptyState label={"No music found"}/>
   )
 }
 

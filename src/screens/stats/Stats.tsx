@@ -1,4 +1,4 @@
-import { Text, ScrollView } from "react-native";
+import { Text, ScrollView, View } from "react-native";
 import React from "react";
 import Card from "../../components/card/Card";
 import { getDaysInMonth, filterMonthAndYear } from "../../utils/Utils";
@@ -7,6 +7,7 @@ import LineChart from "./LineChart";
 import { FEELING } from "../../utils/Constant";
 import { EntriesFeelingModel } from "../../models/FeelingModel";
 import ErrorState from "../../components/error-state/ErrorState";
+import Loader from "../../components/loader/Loader";
 
 const Stats = () => {
   const feelings = FEELING;
@@ -34,7 +35,7 @@ const Stats = () => {
       {!feelingsData.loading && feelingsData.error ? (
         <ErrorState label={feelingsData.error} />
       ) : null}
-      {feelingsData.loading && <Text>Loading...</Text>}
+      {feelingsData.loading && <Loader/>}
 
       {!feelingsData.loading && feelingsData.feelingsList.length ? (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -42,11 +43,20 @@ const Stats = () => {
             <Text className="text-black800 text-xl font-extrabold pb-2">
               Mood Chart
             </Text>
-            <LineChart
-              feelings={feelings}
-              daysInMonth={daysInMonth}
-              feelingsData={feelingsDataInMonth}
-            />
+            {feelingsDataInMonth.length < 2 ? (
+              <View className="justify-center items-center py-16">
+                <Text className="text-base">
+                  We need more data to draw this chart.
+                </Text>
+                <Text className="text-base ">Check back soon!</Text>
+              </View>
+            ) : (
+              <LineChart
+                feelings={feelings}
+                daysInMonth={daysInMonth}
+                feelingsData={feelingsDataInMonth}
+              />
+            )}
           </Card>
         </ScrollView>
       ) : null}

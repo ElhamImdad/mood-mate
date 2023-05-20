@@ -1,11 +1,9 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import EmptyState from '../../../../components/empty-state/EmptyState'
 
 const Videos = () => {
   return (
-    <View>
-      <Text>Videos</Text>
-    </View>
+    <EmptyState label={"No videos found"}/>
   )
 }
 

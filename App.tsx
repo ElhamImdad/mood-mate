@@ -45,7 +45,7 @@ const retrieveLastSelectedMoodData = async () => {
   try {
     const value = await AsyncStorage.getItem('lastSelectedMood');
     if (value !== null) {
-      console.log('Retrieved data:', value);
+      console.log('Last Selected Mood Data:', value);
     } else {
       console.log('Data not found in local storage.');
     }
