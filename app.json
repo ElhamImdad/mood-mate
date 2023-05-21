@@ -16,13 +16,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.elhamimdad.moodmate"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/splash.png",
         "backgroundColor": "#4C9FC1"
-      }
+      },
+      "package": "com.elhamimdad.moodmate"
     },
     "web": {
       "favicon": "./assets/images/splash.png"
@@ -38,6 +40,11 @@
           ]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "d9fca98d-da4f-4695-92ec-73049e34abea"
+      }
+    }
   }
 }

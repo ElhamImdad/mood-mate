@@ -71,7 +71,13 @@ export const registerForPushNotifications = async () => {
       alert("Failed to get push token for push notification!");
       return;
     }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
+    // token = (await Notifications.getExpoPushTokenAsync()).data;
+    if (platform === 'android') {
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+    } else if (platform === 'ios') {
+      token = (await Notifications.getExpoPushTokenAsync()).data;
+    }
+
     console.log("Push token:", token);
   } else {
     alert("Must use physical device for Push Notifications");
