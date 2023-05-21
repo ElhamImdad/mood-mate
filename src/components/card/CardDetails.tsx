@@ -15,7 +15,11 @@ export const CardDetails = ({ data }: { data: EntriesFeelingModel }) => {
     <>
       <ListItem
         pad={12}
-        containerStyle={{ borderRadius: 20, marginBottom: 12, backgroundColor: colors.white}}
+        containerStyle={{
+          borderRadius: 20,
+          marginBottom: 12,
+          backgroundColor: colors.white,
+        }}
       >
         <View className="flex items-center justify-between flex-row">
           <View className="flex items-center justify-center space-y-2">
@@ -24,7 +28,11 @@ export const CardDetails = ({ data }: { data: EntriesFeelingModel }) => {
               {getMonthName(Number.parseInt(data.month))}
             </Text>
           </View>
-          <Divider orientation="vertical" width={1} style={{paddingEnd: 12}}/>
+          <Divider
+            orientation="vertical"
+            width={1}
+            style={{ paddingEnd: 12 }}
+          />
         </View>
         <ListItem.Content className="flex flex-row items-center justify-start">
           <View className="">
@@ -38,7 +46,9 @@ export const CardDetails = ({ data }: { data: EntriesFeelingModel }) => {
                     {feeling.name}
                   </Text>
                   {data.specificFeeling.length - 1 !== idx && (
-                    <Text className="text-sm font-medium text-gray400 text-start">, </Text>
+                    <Text className="text-sm font-medium text-gray400 text-start">
+                      ,{" "}
+                    </Text>
                   )}
                 </View>
               ))}

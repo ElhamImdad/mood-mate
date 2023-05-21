@@ -18,7 +18,7 @@ import { useAppDispatch } from "./src/store/store";
 setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });

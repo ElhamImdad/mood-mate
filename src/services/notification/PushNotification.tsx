@@ -29,7 +29,7 @@ export const scheduleNotifications = () => {
     },
     trigger: {
       hour: 10, // Morning notification time
-      minute: 9,
+      minute: 0,
       repeats: true,
     },
   });

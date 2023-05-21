@@ -7,7 +7,7 @@ import {
   Keyboard,
   Pressable,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import cn from "classnames";
 import Button from "../../../components/button/Button";
@@ -16,11 +16,12 @@ import Modal from "../../../components/modal/Modal";
 import Note from "./moodSlider/Note";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useAppDispatch } from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { togleFeelinfForm } from "../../../store/features/feelings/feelingUtilsSlice";
 import { platform } from "../../../utils/Constant";
 import { Icon } from "../../../utils/Utils";
 import colors from "../../../utils/colors";
+import LastSelectedColorContext from "../../../context/color-context/ColorContext";
 interface FormValues {
   feelingID: number; //id for the feeling (emogi)
   specificFeelingsOption: number[]; // id for each specific feeling...
@@ -31,7 +32,9 @@ interface FormValues {
 const LogMoodForm: React.FC<{}> = () => {
   const [noteModalVisible, setNoteModalVisible] = useState(false);
   const dispatch = useAppDispatch();
-  
+  const colorsList = useAppSelector((state) => state.fetchColors.colorsVal);
+  const { updateColorData } = useContext(LastSelectedColorContext);
+
   const toggleNoteModal = (): void => {
     setNoteModalVisible(!noteModalVisible);
   };
@@ -45,10 +48,14 @@ const LogMoodForm: React.FC<{}> = () => {
     actions.setSubmitting(false);
     try {
       await AsyncStorage.setItem("lastSelectedMood", JSON.stringify(values));
-      console.log("Form data saved successfully!", { values });
     } catch (error) {
       console.log("Error saving form data:", error);
     }
+    const lastSelectedColor = colorsList.filter((colorValue, idx) => {
+      if (idx + 1 === values.feelingID) return colorValue;
+      else colors.white50;
+    });
+    updateColorData(lastSelectedColor[0]);
   };
 
   const feelingsFormValidationSchema = Yup.object({

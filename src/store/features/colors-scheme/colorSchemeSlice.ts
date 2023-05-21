@@ -6,24 +6,14 @@ import { colorsURL } from "../../../services/axios/apis";
 type FetchColorsState = {
   loading: boolean;
   colorsVal: string[];
-  colors: { colorValue: string; feelingID: number }[];
-  awesomeColor: string;
-  goodColor: string;
-  notBadColor: string;
-  badColor: string;
-  awfulColor: string;
+  // colors: { colorValue: string; feelingID: number }[];
   error: string;
 };
 
 const initialState: FetchColorsState = {
   loading: false,
   colorsVal: [],
-  awesomeColor: "",
-  goodColor: "",
-  notBadColor: "",
-  badColor: "",
-  awfulColor: "",
-  colors: [],
+  // colors: [],
   error: "",
 };
 
@@ -48,31 +38,10 @@ const colorSlice = createSlice({
       (state, action: PayloadAction<string[]>) => {
         state.loading = false;
         state.colorsVal = action.payload;
-        let newScheme = [];
-        state.colorsVal.map((colorOb, idxj) => {
-          //  state.colors = { colorValue: colorOb };
-        });
-        state.colorsVal.forEach((color, i) => {
-          switch (i) {
-            case 0:
-              state.awfulColor = color;
-              break;
-            case 1:
-              state.badColor = color;
-              break;
-            case 2:
-              state.notBadColor = color;
-              break;
-            case 3:
-              state.goodColor = color;
-              break;
-            case 5:
-              state.awesomeColor = color;
-              break;
-            default:
-              "";
-          }
-        });
+      
+        // state.colorsVal.map((colorOb, idxj) => {
+        //   //  state.colors = { colorValue: colorOb };
+        // });
         // console.log("colors in store ->>", state.colorsVal);
 
         state.error = "";

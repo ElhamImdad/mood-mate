@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   RootTabParamList,
   RootTabScreenProps,
@@ -11,16 +10,14 @@ import { TabBarIcon } from "../utils/Utils";
 import Stats from "../screens/stats/Stats";
 import Settings from "../screens/settings/Settings";
 import { HomeNavigator } from "./HomeNavigator";
-import { retrieveLastSelectedMoodData } from "../utils/MoodBehavior";
 import { useAppDispatch } from "../store/store";
 import { fetchColors } from "../store/features/colors-scheme/colorSchemeSlice";
 import ColorContextProvider from "../context/color-context/ColorContextProvider";
 
 export default function AppNavigator() {
   const dispatch = useAppDispatch();
-
   useEffect(() => {
-    dispatch(fetchColors())
+    dispatch(fetchColors());
   },[])
   return (
     <NavigationContainer linking={LinkingConfiguration}>
