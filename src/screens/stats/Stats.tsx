@@ -69,25 +69,3 @@ const Stats = () => {
 };
 
 export default Stats;
-
-{
-  /* <ScrollView showsVerticalScrollIndicator={false}>
-  <Card space="relative my-4 mx-3">
-    <Text className="text-black800 text-xl font-extrabold pb-2">
-      Mood Chart
-    </Text>
-    {feelingsDataInMonth.length < 2 ? (
-      <View className="justify-center items-center py-16">
-        <Text className="text-base">We need more data to draw this chart.</Text>
-        <Text className="text-base ">Check back soon!</Text>
-      </View>
-    ) : (
-      <LineChart
-        feelings={feelings}
-        daysInMonth={daysInMonth}
-        feelingsData={feelingsDataInMonth}
-      />
-    )}
-  </Card>
-</ScrollView>; */
-}
