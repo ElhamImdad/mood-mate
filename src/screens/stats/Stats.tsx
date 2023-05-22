@@ -16,7 +16,9 @@ const Stats = () => {
   const feelingsData = useAppSelector((state) => state.fetchfeelings);
   const { colorVal } = useContext(LastSelectedColorContext);
   const [date, setDate] = useState(new Date());
-
+  const minDate = feelingsData.feelingsList[feelingsData.feelingsList.length-1]?.date
+  const maxDate = feelingsData.feelingsList[0]?.date
+  
   const daysInMonth = getDaysInMonth(date.getFullYear(), date.getMonth() + 1);
 
   const feelingsDataInMonth: EntriesFeelingModel[] =
@@ -37,7 +39,8 @@ const Stats = () => {
 
       {!feelingsData.loading && feelingsData.feelingsList.length ? (
         <>
-          <MonthPicker date={date} onChange={(newDate) => setDate(newDate)} />
+          <MonthPicker date={date} onChange={(newDate) => setDate(newDate)} minDate={new Date(minDate)}
+                  maxDate={new Date(maxDate)}/>
           <ScrollView showsVerticalScrollIndicator={false}>
             <Card space="relative my-4 mx-3">
               <Text className="text-black800 text-xl font-extrabold pb-2">
