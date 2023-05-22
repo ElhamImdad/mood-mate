@@ -19,7 +19,7 @@ import * as Yup from "yup";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { togleFeelinfForm } from "../../../store/features/feelings/feelingUtilsSlice";
 import { platform } from "../../../utils/Constant";
-import { Icon } from "../../../utils/Utils";
+import { Icon } from "../../../components/icon/Icon";
 import colors from "../../../utils/colors";
 import LastSelectedColorContext from "../../../context/color-context/ColorContext";
 interface FormValues {

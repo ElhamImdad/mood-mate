@@ -1,7 +1,7 @@
 import { View, Text, Alert } from "react-native";
 import React from "react";
 import colors from "../../../utils/colors";
-import { Icon } from "../../../utils/Utils";
+import { Icon } from "../../../components/icon/Icon";
 import { INSPIRATION } from "../../../utils/Constant";
 import { ScrollView, TouchableOpacity } from "react-native";
 import Card from "../../../components/card/Card";

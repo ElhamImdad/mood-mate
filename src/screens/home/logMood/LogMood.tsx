@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import React from "react";
 import Button from "../../../components/button/Button";
-import { Icon } from "../../../utils/Utils";
+import { Icon } from "../../../components/icon/Icon";
 import Modal from "../../../components/modal/Modal";
 import colors from "../../../utils/colors";
 import LogMoodForm from "./LogMoodForm";

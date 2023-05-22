@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import LinkingConfiguration from "./LinkingConfiguration";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -6,7 +6,7 @@ import {
   RootTabParamList,
   RootTabScreenProps,
 } from "../models/AppNavigationModel";
-import { TabBarIcon } from "../utils/Utils";
+import { TabBarIcon } from "../components/icon/Icon";
 import Stats from "../screens/stats/Stats";
 import Settings from "../screens/settings/Settings";
 import { HomeNavigator } from "./HomeNavigator";
@@ -32,6 +32,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 
 function BottomTabNavigator() {
+  const [date, setDate] = useState(new Date());
   return (
     <BottomTab.Navigator
       initialRouteName="HomeNavigator"
@@ -56,7 +57,8 @@ function BottomTabNavigator() {
         }}
         options={({ navigation }: RootTabScreenProps<"Stats">) => ({
           tabBarLabel: "Stats",
-          headerTitle: "May 2023",
+          headerShown: false,
+          // headerTitle: "",
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="chart-line" color={color} />
           ),

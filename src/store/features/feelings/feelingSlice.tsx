@@ -46,6 +46,7 @@ const feelingsSlice = createSlice({
             if (!state.feelingsPerMonth[monthKey]) {
               state.feelingsPerMonth[monthKey] = [];
             }
+            
             state.feelingsPerMonth[monthKey].push(feelingObj);
           });
     
@@ -61,25 +62,3 @@ const feelingsSlice = createSlice({
 });
 
 export default feelingsSlice.reducer;
-
-// builder.addCase(
-//   fetchFeelings.fulfilled,
-//   (state, action: PayloadAction<EntriesFeelingModel[]>) => {
-//     state.loading = false;
-//     const sortedDate = sortDates(action.payload);
-//     state.feelingsList = sortedDate;
-//     sortedDate.forEach((feelingObj: EntriesFeelingModel) => {
-//       const date = new Date(feelingObj.date);
-//       const year = date.getFullYear();
-//       const month = date.getMonth();
-//       const monthKey = `${year}-${month}`;
-//       if (!state.feelingsPerMonth[monthKey]) {
-//         console.log(!state.feelingsPerMonth[monthKey]);
-
-//         state.feelingsPerMonth[monthKey] = [];
-//       }
-//       state.feelingsPerMonth[monthKey].push(feelingObj);
-//     });
-//     state.error = "";
-//   }
-// );
