@@ -22,6 +22,8 @@ export const registerNotificationHandlers = () => {
 };
 
 export const scheduleNotifications = () => {
+  Notifications.cancelAllScheduledNotificationsAsync();
+
   Notifications.scheduleNotificationAsync({
     content: {
       title: "Hi, how are you?",
@@ -55,7 +57,7 @@ export const registerForPushNotifications = async () => {
       name: "default",
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: "#FF231F7C",
+      lightColor: "#FF231F",
     });
   }
 
